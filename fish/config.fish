@@ -12,5 +12,5 @@ alias rm='rm -I'
 alias cp='cp -i'
 alias mv='mv -i'
 
-# postgres
-alias psql='sudo -iu postgres'
+# intellij scuffed lol
+alias intellij='_JAVA_AWT_WM_NONREPARENTING=1 idea'

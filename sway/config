@@ -234,6 +234,7 @@ bindsym $mod+r mode "resize"
 mode "open app" {
     bindsym d           exec discord; mode "default" 
     bindsym f           exec firefox; mode "default" 
+    bindsym i           exec _JAVA_AWT_WM_NONREPARENTING=1 idea; mode "default"
     bindsym o           exec pcmanfm; mode "default"
     bindsym s           exec spotify; mode "default"
     bindsym t           exec thunderbird; mode "default"

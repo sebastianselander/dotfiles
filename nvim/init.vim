@@ -11,19 +11,10 @@ Plug 'tpope/vim-fugitive' " Git easier
 
 Plug 'junegunn/fzf' " Fuzzy finder
 Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 Plug 'liuchengxu/vim-which-key'
 
 Plug 'vim-airline/vim-airline' " Improved statusline
-Plug 'vim-airline/vim-airline-themes' " Improved statusline
-
-" Use release branch (recommend)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" Starting screen 
-Plug 'mhinz/vim-startify'
 
 " Language-specific
 Plug 'neovimhaskell/haskell-vim'
@@ -42,9 +33,9 @@ set termguicolors
 colorscheme gruvbox
 
 " nightfly
-let g:nightflyCursorColor = 1
-let g:nightflyItalics = 0
-let g:nightflyUnderlineMatchParen = 1
+let g:nightflycursorcolor = 1
+let g:nightflyitalics = 0
+let g:nightflyunderlinematchparen = 1
 
 
 
@@ -52,6 +43,8 @@ let g:nightflyUnderlineMatchParen = 1
 " ----------------General Options---------------- 
 "
 
+" terminal style cursor
+set guicursor=n-v-c:block-Cursor
 
 " Syntax highlighting
 syntax on
@@ -67,7 +60,7 @@ set clipboard+=unnamedplus
 
 
 " Specify color of line numbers
-highlight LineNr ctermfg = Grey guifg=Grey
+highlight LineNr ctermfg = Green guifg=Green
 
 
 " Show certain whitespace as characters.
@@ -96,7 +89,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o f
 set ignorecase
 set smartcase
 
-
 "
 " --------------Bindings--------------
 "
@@ -113,6 +105,11 @@ nnoremap <silent> <esc> :noh<CR>
 
 " Make escape also exit terminal mode
 tnoremap <Esc> <C-\><C-n>
+
+
+" Toggle NERDTree panel
+nnoremap <Leader>. :NERDTreeToggle<CR>
+
 
 "
 " -------------Plugin specific-------------
@@ -138,42 +135,16 @@ set timeoutlen=500
 " NERDTREE
 "
 
-
-" Toggle NERDTree panel
-nnoremap <Leader>. :NERDTreeToggle<CR>
-
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-" Start NERDTree and put the cursor back in the other window.
-autocmd VimEnter * NERDTree | wincmd p
 
 " Start NERDTree on the right side
 let g:NERDTreeWinPos = "right"
 
 " Change default size of NERDTree
-let g:NERDTreeWinSize=25
+let g:NERDTreeWinSize=20
 
-" Add git status changes in NERDTree
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-                \ 'Modified'  :'✹',
-                \ 'Staged'    :'✚',
-                \ 'Untracked' :'✭',
-                \ 'Renamed'   :'➜',
-                \ 'Unmerged'  :'═',
-                \ 'Deleted'   :'✖',
-                \ 'Dirty'     :'✗',
-                \ 'Ignored'   :'☒',
-                \ 'Clean'     :'✔︎',
-                \ 'Unknown'   :'?',
-                \ }
-" Hide brackets around icons
-let g:NERDTreeGitStatusConcealBrackets = 1 " default: 0
 
-" Highlight files in NERDTree
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
 
 
 "
