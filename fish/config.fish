@@ -1,5 +1,8 @@
 starship init fish | source
 
+#set default editor
+set -Ux EDITOR nvim
+
 # Custom functions below
 alias cfg='cd ~/.config'
 alias vim='nvim'
