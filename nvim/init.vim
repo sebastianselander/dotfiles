@@ -30,7 +30,7 @@ call plug#end()
 
 " use color theme
 set termguicolors
-colorscheme gruvbox
+colorscheme ayu
 
 " nightfly
 let g:nightflycursorcolor = 1
@@ -60,7 +60,7 @@ set clipboard+=unnamedplus
 
 
 " Specify color of line numbers
-highlight LineNr ctermfg = Green guifg=Green
+highlight LineNr ctermfg = Red guifg= Red
 
 
 " Show certain whitespace as characters.

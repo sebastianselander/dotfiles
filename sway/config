@@ -259,7 +259,7 @@ default_border pixel 2
 gaps inner 2
 gaps outer 2
 
-client.focused #FFFFFF #FFFFFF #FFFFFF #FFFFFF
+client.focused #0E4943 #0E4943 #0E4943 #0E4943
 client.focused_inactive #2C2C2C #2C2C2C #ffffff #2C2C2C
 
 
