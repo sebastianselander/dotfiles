@@ -6,7 +6,8 @@ set -Ux EDITOR nvim
 # Custom functions below
 alias cfg='cd ~/.config'
 alias vim='nvim'
-alias ls='exa --group-directories-first'
+alias ls='exa --group-directories-first -l'
+alias lsa='exa --group-directories-first -la'
 alias lst='exa -s modified'
 alias rmlatex='rm *.log *.aux *.out'
 
@@ -14,6 +15,3 @@ alias rmlatex='rm *.log *.aux *.out'
 alias rm='rm -I'
 alias cp='cp -i'
 alias mv='mv -i'
-
-# intellij scuffed lol
-alias intellij='_JAVA_AWT_WM_NONREPARENTING=1 idea'

@@ -1,7 +1,7 @@
 [character]
-success_symbol = "[:-\\)](bold green)"
-error_symbol = "[:-\\(](bold red)"
-vicmd_symbol = "[NORMAL:](bold green)"
+success_symbol = " [❯](bold green)"
+error_symbol   = " [❯](bold red)"
+vicmd_symbol   = " [NORMAL❯](bold green)"
 
 [package]
 disabled = true
@@ -16,4 +16,7 @@ disabled = true
 disabled = true
 
 [erlang]
+disabled = true
+
+[rust]
 disabled = true

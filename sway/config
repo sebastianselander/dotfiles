@@ -234,19 +234,19 @@ bindsym $mod+r mode "resize"
 mode "open app" {
     bindsym d           exec discord; mode "default" 
     bindsym f           exec firefox; mode "default" 
-    bindsym i           exec _JAVA_AWT_WM_NONREPARENTING=1 idea; mode "default"
+    bindsym i           exec ~/.config/idea; mode "default"
     bindsym o           exec pcmanfm; mode "default"
     bindsym s           exec spotify; mode "default"
     bindsym t           exec thunderbird; mode "default"
     bindsym v           exec kitty -- nvim; mode "default"
     bindsym z           exec zoom; mode "default"
     bindsym 9           exec kitty -- nvim ~/.config/sway/config; mode "default" 
-    bindsym Shift+Print exec grimshot save area 
-    bindsym Print       exec grimshot save active 
+    bindsym Print exec grimshot save area 
+    bindsym Shift+Print       exec grimshot save active 
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
-    bindsym $mod+a mode "default"
+    bindsym $mod+o mode "default"
 }
 
 bindsym $mod+o mode "open app"
