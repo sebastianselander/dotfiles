@@ -6,10 +6,11 @@ set -Ux EDITOR nvim
 # Custom functions below
 alias cfg='cd ~/.config'
 alias vim='nvim'
-alias ls='exa --group-directories-first -l'
-alias lsa='exa --group-directories-first -la'
-alias lst='exa -s modified'
+alias ls='exa --group-directories-first -1'
+alias lsa='exa --group-directories-first  -la'
+alias lst='exa -s modified -1'
 alias rmlatex='rm *.log *.aux *.out'
+alias ghcid='stack exec ghcid'
 
 # safer
 alias rm='rm -I'

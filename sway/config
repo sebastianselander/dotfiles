@@ -35,10 +35,10 @@ output * bg ~/Pictures/wallpapers/swayimg.png fill
 
 
 
-# You can get the names of your outputs by running: swaymsg -t get_outputs
+# You can get the names of your outputs by running: swaymsg -t get_inputs
 
 input "1:1:AT_Translated_Set_2_keyboard" {
-		xkb_layout se
+	xkb_layout se
         xkb_variant ,nodeadkeys
         xkb_options caps:escape
 }
@@ -227,22 +227,19 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-
-
-
 # OPEN APPLICATIONS
 mode "open app" {
-    bindsym d           exec discord; mode "default" 
-    bindsym f           exec firefox; mode "default" 
-    bindsym i           exec ~/.config/idea; mode "default"
-    bindsym o           exec pcmanfm; mode "default"
-    bindsym s           exec spotify; mode "default"
-    bindsym t           exec thunderbird; mode "default"
-    bindsym v           exec kitty -- nvim; mode "default"
-    bindsym z           exec zoom; mode "default"
+    bindsym d           exec discord;                             mode "default" 
+    bindsym f           exec firefox;                             mode "default" 
+    bindsym i           exec ~/.config/idea;                      mode "default"
+    bindsym o           exec pcmanfm;                             mode "default"
+    bindsym s           exec spotify;                             mode "default"
+    bindsym t           exec thunderbird;                         mode "default"
+    bindsym v           exec kitty -- nvim;                       mode "default"
+    bindsym z           exec zoom;                                mode "default"
     bindsym 9           exec kitty -- nvim ~/.config/sway/config; mode "default" 
-    bindsym Print exec grimshot save area 
-    bindsym Shift+Print       exec grimshot save active 
+    bindsym Print       exec grimshot save area;                  mode "default"
+    bindsym Shift+Print exec grimshot save active;                mode "default" 
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -250,6 +247,7 @@ mode "open app" {
 }
 
 bindsym $mod+o mode "open app"
+
 
 #Rules for applications
 for_window [title="Zoom"] floating enable

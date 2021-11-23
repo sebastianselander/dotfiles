@@ -1,25 +1,16 @@
-
 "Plugins
 call plug#begin()
 
 
 Plug 'tpope/vim-commentary' " Easer commenting
-
 Plug 'tpope/vim-surround' " (),{},[] etc made easier
-
 Plug 'tpope/vim-fugitive' " Git easier
 
-Plug 'junegunn/fzf' " Fuzzy finder
 Plug 'preservim/nerdtree'
 
-Plug 'liuchengxu/vim-which-key'
-
-Plug 'vim-airline/vim-airline' " Improved statusline
-
-" Language-specific
 Plug 'neovimhaskell/haskell-vim'
 
-" Colors
+" schemes
 Plug 'ayu-theme/ayu-vim'
 Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'sainnhe/sonokai'
@@ -30,7 +21,7 @@ call plug#end()
 
 " use color theme
 set termguicolors
-colorscheme ayu
+colorscheme nightfly
 
 " nightfly
 let g:nightflycursorcolor = 1
@@ -40,8 +31,11 @@ let g:nightflyunderlinematchparen = 1
 
 
 "
-" ----------------General Options---------------- 
+" ----------------General Options----------------
 "
+
+" hindent
+setlocal formatprg=hindent
 
 " terminal style cursor
 set guicursor=n-v-c:block-Cursor
@@ -89,6 +83,15 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o f
 set ignorecase
 set smartcase
 
+" spell checking
+set spelllang=en,sv
+
+" fuzzy finding
+set path+=**
+set wildmenu
+set wildignore+=*/.git/*
+
+
 "
 " --------------Bindings--------------
 "
@@ -97,8 +100,10 @@ set smartcase
 nnoremap <space> <Nop>
 let mapleader = ' '
 
-nnoremap <C-w>ä <C-w>>
-nnoremap <C-w>ö <C-w><
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
 
 " Bind Escape to clear current highlighting
 nnoremap <silent> <esc> :noh<CR>
@@ -106,31 +111,42 @@ nnoremap <silent> <esc> :noh<CR>
 " Make escape also exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 
+nnoremap <leader>gs :G<CR>
+nnoremap <leader>gh :diffget //2<CR>
+nnoremap <leader>gl :diffget //3<CR>
 
-" Toggle NERDTree panel
-nnoremap <Leader>. :NERDTreeToggle<CR>
-
-
-"
-" -------------Plugin specific-------------
-"
-
-
-"
-" WHICH KEY
-"
-
-" Set which key to show up when pressing leader key
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-
-" By default timeoutlen is 1000 ms
-set timeoutlen=500
-
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <leader><space> :source ~/.config/nvim/init.vim<CR>
+nnoremap <leader>sp :call FixLastSpellingError()<CR>
+nnoremap <leader>sw :call SwapWords()<CR>
 
 
 
 
 "
+" FUNCTIONS
+"
+
+" Swap two following words, skipping all non-alphabetical words
+function SwapWords()
+    normal mmyee
+    execute "normal /\\a\<cr>"
+    normal Plde`mPlde`m
+endfunction
+
+function TrimWhitespace()
+  %s/\(^--\)\@<!\s*$//
+  ''
+endfunction
+
+function FixLastSpellingError()
+    :normal mm[s1z=`m
+endfunction
+
+" Automatically trim trailing whitespace on save.
+autocmd BufWritePre * if !&binary | call TrimWhitespace() | endif
+
+
 "
 " NERDTREE
 "
@@ -139,26 +155,7 @@ set timeoutlen=500
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " Start NERDTree on the right side
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos = "left"
 
 " Change default size of NERDTree
-let g:NERDTreeWinSize=20
-
-
-
-
-"
-" Fuzzy finder
-"
-
-
-" Run fzf
-nnoremap <Leader>, :FZF<CR>
-
-
-
-"
-" AIRLINE
-"
-
-let g:airline_theme='gruvbox'
+let g:NERDTreeWinSize=35
