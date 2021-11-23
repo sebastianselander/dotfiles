@@ -8,6 +8,8 @@ Plug 'tpope/vim-fugitive' " Git easier
 
 Plug 'preservim/nerdtree'
 
+Plug 'itchyny/lightline.vim'
+
 Plug 'neovimhaskell/haskell-vim'
 
 " schemes
@@ -29,10 +31,15 @@ let g:nightflyitalics = 0
 let g:nightflyunderlinematchparen = 1
 
 
-
 "
 " ----------------General Options----------------
 "
+
+" nightfly
+let g:nightflyCursorColor = 1
+let g:nightflyItalics = 0
+let g:nightflyUnderlineMatchParen = 1
+
 
 " hindent
 setlocal formatprg=hindent
@@ -43,6 +50,9 @@ set guicursor=n-v-c:block-Cursor
 " Syntax highlighting
 syntax on
 
+" Color column 100
+set colorcolumn=100
+
 " Highlight current line
 set cursorline
 
@@ -50,11 +60,10 @@ set cursorline
 set numberwidth=5
 
 set showtabline=1
-set clipboard+=unnamedplus
-
+" set clipboard+=unnamedplus
 
 " Specify color of line numbers
-highlight LineNr ctermfg = Red guifg= Red
+highlight LineNr ctermfg=Grey guifg=Grey
 
 
 " Show certain whitespace as characters.
@@ -119,8 +128,8 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <leader><space> :source ~/.config/nvim/init.vim<CR>
 nnoremap <leader>sp :call FixLastSpellingError()<CR>
 nnoremap <leader>sw :call SwapWords()<CR>
-
-
+nnoremap <leader>ä :bnext<CR>
+nnoremap <leader>ö :bprevious<CR>
 
 
 "
@@ -159,3 +168,16 @@ let g:NERDTreeWinPos = "left"
 
 " Change default size of NERDTree
 let g:NERDTreeWinSize=35
+
+
+"
+" LIGHTLINE
+"
+
+let g:lightline = {
+      \ 'colorscheme': 'ayu_mirage',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'absolutepath', 'modified'] ]
+      \ },
+      \ }
