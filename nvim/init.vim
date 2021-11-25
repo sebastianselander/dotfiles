@@ -74,6 +74,11 @@ set list listchars=tab:\›\ ,trail:·,extends:>,precedes:<
 " Show relative numbers of lines instead of the absolute numbers
 set number relativenumber
 
+" Make vsplit open to the right.
+set splitright
+
+" Make split open below
+set splitbelow
 
 " Tab/space insertion. By default, insert 4 spaces instead of a TAB character.
 set softtabstop=0  " Don't do fancy conversion from spaces -> tab
@@ -128,6 +133,7 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <leader><space> :source ~/.config/nvim/init.vim<CR>
 nnoremap <leader>sp :call FixLastSpellingError()<CR>
 nnoremap <leader>sw :call SwapWords()<CR>
+nnoremap <leader>te :call OpenTerminalVSplit()<CR>
 nnoremap <leader>ä :bnext<CR>
 nnoremap <leader>ö :bprevious<CR>
 
@@ -135,6 +141,11 @@ nnoremap <leader>ö :bprevious<CR>
 "
 " FUNCTIONS
 "
+function OpenTerminalVSplit()
+    :65vsplit
+    normal <C-w>w
+    :term
+endfunction
 
 " Swap two following words, skipping all non-alphabetical words
 function SwapWords()
