@@ -68,8 +68,8 @@
 
     "clock#date": {
       "interval": 10,
-      "format": "  {:%e %b %Y}", // Icon: calendar-alt
-      "tooltip-format": "{:%e %B %Y}"
+      "format": "  {:%A %e %b %Y}", // Icon: calendar-alt
+      "tooltip-format": "{:%A %e %B %Y}"
     },
 
     "cpu": {

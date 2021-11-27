@@ -18,40 +18,35 @@ Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'sainnhe/sonokai'
 Plug 'morhetz/gruvbox'
 
-
 call plug#end()
+
+"
+" ----------------THEME----------------
+"
 
 " use color theme
 set termguicolors
 colorscheme nightfly
 
 " nightfly
-let g:nightflycursorcolor = 1
-let g:nightflyitalics = 0
-let g:nightflyunderlinematchparen = 1
+let g:nightflycursorcolor=1
+let g:nightflyitalics=0
+let g:nightflyunderlinematchparen=1
 
+
+
+" terminal style cursor
+set guicursor=n-v-c:block-Cursor
 
 "
 " ----------------General Options----------------
 "
 
-" nightfly
-let g:nightflyCursorColor = 1
-let g:nightflyItalics = 0
-let g:nightflyUnderlineMatchParen = 1
-
-
-" hindent
-setlocal formatprg=hindent
-
-" terminal style cursor
-set guicursor=n-v-c:block-Cursor
-
 " Syntax highlighting
 syntax on
 
 " Color column 100
-set colorcolumn=100
+set colorcolumn=80
 
 " Highlight current line
 set cursorline
@@ -59,17 +54,21 @@ set cursorline
 " Width of gutter
 set numberwidth=5
 
+set scrolloff=1
+
 set showtabline=1
 " set clipboard+=unnamedplus
 
 " Specify color of line numbers
 highlight LineNr ctermfg=Grey guifg=Grey
 
+set modifiable
+set nowrap
 
 " Show certain whitespace as characters.
 set list listchars=tab:\›\ ,trail:·,extends:>,precedes:<
 
-
+set nrformats-=octal
 
 " Show relative numbers of lines instead of the absolute numbers
 set number relativenumber
@@ -101,9 +100,9 @@ set smartcase
 set spelllang=en,sv
 
 " fuzzy finding
-set path+=**
+set path+=.,,**
 set wildmenu
-set wildignore+=*/.git/*
+set wildignore+=.git
 
 
 "
@@ -166,7 +165,6 @@ endfunction
 " Automatically trim trailing whitespace on save.
 autocmd BufWritePre * if !&binary | call TrimWhitespace() | endif
 
-
 "
 " NERDTREE
 "
@@ -175,7 +173,7 @@ autocmd BufWritePre * if !&binary | call TrimWhitespace() | endif
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " Start NERDTree on the right side
-let g:NERDTreeWinPos = "left"
+let g:NERDTreeWinPos = "right"
 
 " Change default size of NERDTree
 let g:NERDTreeWinSize=35

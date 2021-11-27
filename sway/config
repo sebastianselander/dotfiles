@@ -27,7 +27,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/wallpapers/swayimg.png fill
+output * bg ~/Pictures/wallpapers/nightfly.jpg fill
 #
 # Example configuration:
 #
@@ -43,9 +43,9 @@ input "1:1:AT_Translated_Set_2_keyboard" {
         xkb_options caps:escape
 }
 
-input "1267:12472:ELAN1201:00_04F3:30B8_Touchpad" { 
+input "1267:12472:ELAN1201:00_04F3:30B8_Touchpad" {
         natural_scroll enabled
-} 
+}
 
 
 #gnome-keyring for nm-applet
@@ -109,7 +109,7 @@ bindsym XF86MonBrightnessDown exec light -U 5 && light -G | cut -d'.' -f1 > $WOB
 
     # Lock the screen
     bindsym $mod+Ctrl+l exec swaylock --image /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png
-    
+
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 #
@@ -223,23 +223,24 @@ mode "resize" {
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
 
 # OPEN APPLICATIONS
 mode "open app" {
-    bindsym d           exec discord;                             mode "default" 
-    bindsym f           exec firefox;                             mode "default" 
+    bindsym d           exec discord;                             mode "default"
+    bindsym f           exec firefox;                             mode "default"
     bindsym i           exec ~/.config/idea;                      mode "default"
     bindsym o           exec pcmanfm;                             mode "default"
     bindsym s           exec spotify;                             mode "default"
     bindsym t           exec thunderbird;                         mode "default"
     bindsym v           exec kitty -- nvim;                       mode "default"
     bindsym z           exec zoom;                                mode "default"
-    bindsym 9           exec kitty -- nvim ~/.config/sway/config; mode "default" 
+    bindsym 9           exec kitty -- nvim ~/.config/sway/config; mode "default"
     bindsym Print       exec grimshot save area;                  mode "default"
-    bindsym Shift+Print exec grimshot save active;                mode "default" 
+    bindsym Shift+Print exec grimshot save active;                mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -253,16 +254,16 @@ bindsym $mod+o mode "open app"
 for_window [title="Zoom"] floating enable
 
 #Border and gaps
-default_border pixel 2
-gaps inner 2
-gaps outer 2
+default_border pixel 1
+gaps inner 4
+gaps outer 4
 
-client.focused #0E4943 #0E4943 #0E4943 #0E4943
+client.focused #5e97ec #5e97ec #5e97ec #5e97ec
 client.focused_inactive #2C2C2C #2C2C2C #ffffff #2C2C2C
 
 
 #Autotiling
-exec_always --no-startup-id autotiling
+exec_always autotiling
 
 
 #Waybar
