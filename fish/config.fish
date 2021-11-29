@@ -9,7 +9,7 @@ set -Ux EDITOR nvim
 alias cfg='cd ~/.config'
 alias vi='nvim'
 alias vim='nvim'
-alias ls='exa --group-directories-first'
+alias ls='exa --group-directories-first -1'
 alias lsa='exa --group-directories-first -la'
 alias lst='exa -s modified -1'
 alias rmlatex='rm *.log *.aux *.out'
@@ -20,4 +20,4 @@ alias rm='rm -I'
 alias cp='cp -i'
 alias mv='mv -i'
 
-set PATH $PATH /home/sebastian/.scripts/dotnet
+#set PATH $PATH /home/sebastian/.scripts/dotnet

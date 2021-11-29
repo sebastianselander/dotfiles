@@ -27,7 +27,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/wallpapers/nightfly.jpg fill
+output * bg ~/Pictures/wallpapers/swirl.jpg fill
 #
 # Example configuration:
 #
@@ -47,6 +47,9 @@ input "1267:12472:ELAN1201:00_04F3:30B8_Touchpad" {
         natural_scroll enabled
 }
 
+bindsym $mod+m exec swaymsg input "1:1:AT_Translated_Set_2_keyboard" xkb_layout us; exec notify-send echo "english"
+bindsym $mod+n exec swaymsg input "1:1:AT_Translated_Set_2_keyboard" xkb_layout se; exec notify-send echo "swedish"
+
 
 #gnome-keyring for nm-applet
 exec eval $(gnome-keyring-daemon --start)
@@ -63,8 +66,6 @@ bindsym XF86AudioMute exec pamixer --toggle-mute && ( pamixer --get-mute && echo
 
 bindsym XF86MonBrightnessUp exec light -A 5 && light -G | cut -d'.' -f1 > $WOBSOCK
 bindsym XF86MonBrightnessDown exec light -U 5 && light -G | cut -d'.' -f1 > $WOBSOCK
-
-
 
 
 

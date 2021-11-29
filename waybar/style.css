@@ -48,9 +48,9 @@
 
 /* The whole bar */
 #waybar {
-    background: #323232;
+    background: #011627; /* #323232; */
     color: white;
-    font-family: Iosevka; /*Cantarell, Noto Sans, sans-serif; */
+    font-family: Cantarell Mono, Noto Sans, sans-serif;
     font-size: 13px;
 }
 
