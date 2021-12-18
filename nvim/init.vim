@@ -38,6 +38,35 @@ let g:nightflyunderlinematchparen=1
 " terminal style cursor
 set guicursor=n-v-c:block-Cursor
 
+" ----------------- LANGUAGE -------------------
+" to enable highlighting of `forall`
+let g:haskell_enable_quantification     = 1
+" to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_recursivedo        = 1
+" to enable highlighting of `proc`
+let g:haskell_enable_arrowsyntax        = 1
+" to enable highlighting of `pattern`
+let g:haskell_enable_pattern_synonyms   = 1
+" to enable highlighting of type roles
+let g:haskell_enable_typeroles          = 1
+" to enable highlighting of `static`
+let g:haskell_enable_static_pointers    = 1
+" to enable highlighting of backpack keywords
+let g:haskell_backpack                  = 1
+
+
+let g:haskell_indent_if                 = 2
+let g:haskell_indent_case               = 2
+let g:haskell_indent_let                = 4
+let g:haskell_indent_where              = 2
+let g:haskell_indent_before_where       = 2
+let g:haskell_indent_after_bare_where   = 2
+let g:haskell_indent_do                 = 2
+let g:haskell_indent_in                 = 1
+let g:haskell_indent_guard              = 2
+let g:haskell_indent_case_alternative   = 1
+
+
 "
 " ----------------General Options----------------
 "
@@ -45,8 +74,10 @@ set guicursor=n-v-c:block-Cursor
 " Syntax highlighting
 syntax on
 
+filetype plugin indent on
+
 " Color column 100
-set colorcolumn=80
+set colorcolumn=90
 
 " Highlight current line
 set cursorline
@@ -124,6 +155,12 @@ nnoremap <silent> <esc> :noh<CR>
 " Make escape also exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 
+" clipboard copy
+nnoremap <leader>y "+y
+nnoremap <leader>p "+p
+vnoremap <leader>y "+y
+vnoremap <leader>p "+p
+
 nnoremap <leader>gs :G<CR>
 nnoremap <leader>gh :diffget //2<CR>
 nnoremap <leader>gl :diffget //3<CR>
@@ -140,6 +177,7 @@ nnoremap <leader>ö :bprevious<CR>
 "
 " FUNCTIONS
 "
+
 function OpenTerminalVSplit()
     :65vsplit
     normal <C-w>w
@@ -163,7 +201,7 @@ function FixLastSpellingError()
 endfunction
 
 " Automatically trim trailing whitespace on save.
-autocmd BufWritePre * if !&binary | call TrimWhitespace() | endif
+" autocmd BufWritePre * if !&binary | call TrimWhitespace() | endif
 
 "
 " NERDTREE

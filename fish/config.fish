@@ -15,6 +15,8 @@ alias lst='exa -s modified -1'
 alias rmlatex='rm *.log *.aux *.out'
 alias ghci='stack repl'
 
+alias aoc='cd ~/Documents/github/aoc21/'
+
 # safer
 alias rm='rm -I'
 alias cp='cp -i'
