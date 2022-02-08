@@ -12,6 +12,9 @@ Plug 'itchyny/lightline.vim'
 
 Plug 'neovimhaskell/haskell-vim'
 
+" latexy boi
+Plug 'lervag/vimtex'
+
 " schemes
 Plug 'ayu-theme/ayu-vim'
 Plug 'bluz71/vim-nightfly-guicolors'

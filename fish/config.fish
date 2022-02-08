@@ -5,6 +5,9 @@ fish_default_key_bindings
 #set default editor
 set -Ux EDITOR nvim
 
+# block cursor
+set -U fish_cursor_default block
+
 # Custom functions below
 alias cfg='cd ~/.config'
 alias vi='nvim'
@@ -21,5 +24,8 @@ alias aoc='cd ~/Documents/github/aoc21/'
 alias rm='rm -I'
 alias cp='cp -i'
 alias mv='mv -i'
+
+#flapper
+alias jflap='env GTK_THEME=adwaita jflap %U'
 
 #set PATH $PATH /home/sebastian/.scripts/dotnet
