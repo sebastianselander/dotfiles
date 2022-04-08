@@ -25,6 +25,11 @@ alias rm='rm -I'
 alias cp='cp -i'
 alias mv='mv -i'
 
+# smoother
+alias ..='cd ..'
+alias ....='cd ../..'
+alias ......='cd ../../..'
+
 #flapper
 alias jflap='env GTK_THEME=adwaita jflap %U'
 

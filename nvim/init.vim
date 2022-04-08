@@ -69,6 +69,8 @@ let g:haskell_indent_in                 = 1
 let g:haskell_indent_guard              = 2
 let g:haskell_indent_case_alternative   = 1
 
+" vimtex
+let g:vimtex_view_method = 'zathura'
 
 "
 " ----------------General Options----------------

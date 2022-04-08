@@ -73,8 +73,8 @@ bindsym XF86MonBrightnessDown exec light -U 5 && light -G | cut -d'.' -f1 > $WOB
 #
 # Example configuration:
  exec swayidle -w \
-          timeout 300 'swaylock -f -c 000000 -i /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png' \
-          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+          timeout 600 'swaylock -f -c 000000 -i /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png' \
+          timeout 1200 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
           before-sleep 'swaylock -f -c 000000'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
