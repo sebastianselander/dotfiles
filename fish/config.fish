@@ -15,7 +15,7 @@ alias vim='nvim'
 alias ls='exa --group-directories-first -1'
 alias lsa='exa --group-directories-first -la'
 alias lst='exa -s modified -1'
-alias rmlatex='rm *.log *.aux *.out'
+alias rmlatex='rm *.log *.aux *.out *.fdb_latexmk *.fls'
 alias ghci='stack repl'
 
 alias aoc='cd ~/Documents/github/aoc21/'
