@@ -27,7 +27,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/wallpapers/swirl.jpg fill
+output * bg ~/Pictures/wallpapers/kitava.jpg fill
 #
 # Example configuration:
 #
@@ -230,7 +230,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # OPEN APPLICATIONS
-mode "open app" {
+mode "App" {
     bindsym d           exec discord;                             mode "default"
     bindsym f           exec firefox;                             mode "default"
     bindsym i           exec ~/.config/idea;                      mode "default"
@@ -248,11 +248,11 @@ mode "open app" {
     bindsym $mod+o mode "default"
 }
 
-bindsym $mod+o mode "open app"
+bindsym $mod+o mode "App"
 
 
 #Rules for applications
-for_window [title="Zoom"] floating enable
+#for_window [title="Zoom"] floating enable
 
 #Border and gaps
 default_border pixel 1

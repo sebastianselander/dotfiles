@@ -5,9 +5,6 @@ fish_default_key_bindings
 #set default editor
 set -Ux EDITOR nvim
 
-# block cursor
-set -U fish_cursor_default block
-
 # Custom functions below
 alias cfg='cd ~/.config'
 alias vi='nvim'
