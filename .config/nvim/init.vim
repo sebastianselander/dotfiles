@@ -7,10 +7,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf'
 Plug 'itchyny/lightline.vim'
 Plug 'neovimhaskell/haskell-vim'
-Plug 'alx741/vim-hindent'
+" moves cursor to top of file on save, super annoying
+" Plug 'alx741/vim-hindent'
 Plug 'lervag/vimtex'
 Plug 'joom/latex-unicoder.vim'
-Plug 'vim-autoformat/vim-autoformat'
 Plug 'ayu-theme/ayu-vim'
 Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'sainnhe/sonokai'
@@ -28,51 +28,45 @@ Plug 'nvim-telescope/telescope.nvim'
 call plug#end()
 
 
-lua << LUA
-local ht = require('haskell-tools')
-local def_opts = { noremap = true, silent = true, }
-ht.setup {
-  hls = {
-    -- See nvim-lspconfig's  suggested configuration for keymaps, etc.
-    on_attach = function(client, bufnr)
-      local opts = vim.tbl_extend('keep', def_opts, { buffer = bufnr, })
-      -- haskell-language-server relies heavily on codeLenses,
-      -- so auto-refresh (see advanced configuration) is enabled by default
-      vim.keymap.set('n', '<space>ca', vim.lsp.codelens.run, opts)
-      vim.keymap.set('n', '<space>hs', ht.hoogle.hoogle_signature, opts)
-      -- default_on_attach(client, bufnr)  -- if defined, see nvim-lspconfig
-    end,
-  },
-}
--- Suggested keymaps that do not depend on haskell-language-server
--- Toggle a GHCi repl for the current package
-vim.keymap.set('n', '<leader>rr', ht.repl.toggle, def_opts)
--- Toggle a GHCi repl for the current buffer
-vim.keymap.set('n', '<leader>rf', function()
-  ht.repl.toggle(vim.api.nvim_buf_get_name(0))
-end, def_opts)
-vim.keymap.set('n', '<leader>rq', ht.repl.quit, def_opts)
-LUA
+" lua << LUA
+" local ht = require('haskell-tools')
+" local def_opts = { noremap = true, silent = true, }
+" ht.setup {
+"   hls = {
+"     -- See nvim-lspconfig's  suggested configuration for keymaps, etc.
+"     on_attach = function(client, bufnr)
+"       local opts = vim.tbl_extend('keep', def_opts, { buffer = bufnr, })
+"       -- haskell-language-server relies heavily on codeLenses,
+"       -- so auto-refresh (see advanced configuration) is enabled by default
+"       vim.keymap.set('n', '<space>ca', vim.lsp.codelens.run, opts)
+"       vim.keymap.set('n', '<space>hs', ht.hoogle.hoogle_signature, opts)
+"       -- default_on_attach(client, bufnr)  -- if defined, see nvim-lspconfig
+"     end,
+"   },
+" }
+" -- Suggested keymaps that do not depend on haskell-language-server
+" -- Toggle a GHCi repl for the current package
+" vim.keymap.set('n', '<leader>rr', ht.repl.toggle, def_opts)
+" -- Toggle a GHCi repl for the current buffer
+" vim.keymap.set('n', '<leader>rf', function()
+"   ht.repl.toggle(vim.api.nvim_buf_get_name(0))
+" end, def_opts)
+" vim.keymap.set('n', '<leader>rq', ht.repl.quit, def_opts)
+" LUA
 
 
 
 
-"
-" ----------------THEME----------------
-"
+""
+"" ----------------THEME----------------
+""
 
-" use color theme
+"" use color theme
 set termguicolors
-colorscheme gruvbox
-
-" nightfly
-let g:nightflycursorcolor=1
-let g:nightflyitalics=0
-let g:nightflyunderlinematchparen=1
+colorscheme ayu
 
 
-
-" terminal style cursor
+"" terminal style cursor
 set guicursor=n-v-c:block-Cursor
 
 let g:haskell_enable_quantification   = 1
@@ -97,12 +91,12 @@ let g:haskell_indent_case_alternative = 1
 
 
 
-" vimtex
+"" vimtex
 let g:vimtex_view_method = 'zathura'
 
-"
-" ----------------General Options----------------
-"
+""
+"" ----------------General Options----------------
+""
 
 syntax on
 filetype plugin indent on
@@ -135,7 +129,6 @@ set spelllang=en,sv
 set smartindent
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions+=j formatoptions+=q
-autocmd BufWritePre * if !&binary | call TrimWhitespace() | endif
 
 
 let mapleader = ' '
@@ -176,10 +169,14 @@ function SwapWords()
     normal Plde`mPlde`m
 endfunction
 
-function TrimWhitespace()
-    %s/\(^--\)\@<!\s*$//
-    ''
-endfunction
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 function FixLastSpellingError()
     :normal mm[s1z=`m
@@ -196,7 +193,7 @@ endfunction
 "
 
 let g:lightline = {
-            \ 'colorscheme': 'gruvbox',
+            \ 'colorscheme': 'ayu',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'readonly', 'absolutepath', 'modified'] ]
