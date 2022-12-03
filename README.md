@@ -1,5 +1,5 @@
 Using alias: `alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'`
-we can add, commit, push using `config add, `config commit, `config push`
+we can add, commit, push using `config add, config commit, `config push`
 
 ## Clone the repo by:
 
