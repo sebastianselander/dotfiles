@@ -97,7 +97,7 @@ let g:vimtex_view_method = 'zathura'
 ""
 "" ----------------General Options----------------
 ""
-
+" cool comment
 syntax on
 filetype plugin indent on
 
