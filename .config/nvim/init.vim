@@ -18,6 +18,7 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'https://gitlab.com/madyanov/gruber.vim'
 
 " Haskell plug and deps
 Plug 'MrcJkb/haskell-tools.nvim'
@@ -63,7 +64,7 @@ call plug#end()
 
 "" use color theme
 set termguicolors
-colorscheme ayu
+colorscheme gruber
 
 
 "" terminal style cursor
@@ -120,6 +121,7 @@ set shiftwidth=0
 set tabstop=4
 set numberwidth=5
 set scrolloff=8
+set sidescrolloff=8
 set showtabline=1
 set expandtab
 set smarttab
