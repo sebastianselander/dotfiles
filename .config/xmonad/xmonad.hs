@@ -18,6 +18,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.StatusBar
+import XMonad.Hooks.InsertPosition
 
 -- layout
 import XMonad.Layout.Renamed
@@ -25,6 +26,10 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.LayoutModifier(ModifiedLayout)
+import XMonad.Layout.Gaps
+import XMonad.Layout.Spiral
+import XMonad.Layout.ThreeColumns
+import XMonad.Layout.Reflect
 
 -- actions
 import XMonad.Actions.CopyWindow
@@ -54,83 +59,132 @@ import XMonad.Prompt.FuzzyMatch
 -- COLOR SCHEMES
 
 data Colorscheme = Colorscheme
-                 { black :: String
-                 , white :: String
-                 , gray :: String
-                 , yellow :: String
-                 , orange :: String
-                 , red :: String
-                 , purple :: String
-                 , blue :: String
-                 , cyan :: String
-                 , green :: String
-                 }
+    { black  :: String
+    , white  :: String
+    , gray   :: String
+    , yellow :: String
+    , orange :: String
+    , red    :: String
+    , purple :: String
+    , blue   :: String
+    , cyan   :: String
+    , green  :: String
+    }
+
+myGruber :: Colorscheme
+myGruber = Colorscheme
+    { black  = "#1c1c1c"
+    , white  = "#e4e4e4"
+    , gray   = "#626262"
+    , yellow = "#ffd700"
+    , orange = "#ffa500"
+    , red    = "#ff5f5f"
+    , purple = "#afafd7"
+    , blue   = "#87afd7"
+    , cyan   = "#afd7af"
+    , green  = "#87d75f"
+    }
 
 myGruvbox :: Colorscheme
 myGruvbox = Colorscheme
-          { black   = "#282828"
-          , white   = "#ebdbb2"
-          , gray    = "#928374"
-          , yellow  = "#fabd2f"
-          , orange  = "#fe8019"
-          , red     = "#fb4934"
-          , purple  = "#d3869b"
-          , blue    = "#83a598"
-          , cyan    = "#8ec07c"
-          , green   = "#b8bb26"
-          }
+    { black   = "#282828"
+    , white   = "#ebdbb2"
+    , gray    = "#928374"
+    , yellow  = "#fabd2f"
+    , orange  = "#fe8019"
+    , red     = "#fb4934"
+    , purple  = "#d3869b"
+    , blue    = "#83a598"
+    , cyan    = "#8ec07c"
+    , green   = "#b8bb26"
+    }
 
 
 ---------------------------------------------------------------------------------------------------
 -- USER VARIABLES
 
-
 myModMask            = mod4Mask                          :: KeyMask
 myFocusFollowsMouse  = False                             :: Bool
 myClickJustFocuses   = True                              :: Bool
 myBorderWidth        = 1                                 :: Dimension
-myWindowGap          = 1                                 :: Integer
-myColor              = undefined                         :: Colorscheme
+myGaps               = 5                                 :: Integer
+myColor              = myGruber                          :: Colorscheme
 myNormalBorderColor  = "#dddddd"                         :: String
-myFocusedBorderColor = "#ff0000"                         :: String
+myFocusedBorderColor = "#ffd700"                         :: String
 myTerminal           = "kitty"                           :: String
 myFilemanager        = "pcmanfm"                         :: String
 myBrowser            = "firefox"                         :: String
 myMail               = "thunderbird"                     :: String
-myFont               = "Iosevka Term Nerd Font Complete" :: String
+myFont               = "Iosevka Term Nerd Font Complete" :: String -- not used yet
 
 ---------------------------------------------------------------------------------------------------
 -- HOOKS
 
+myStartupHook :: X ()
 myStartupHook        = do
     spawnOnce "nitrogen --restore &"
     spawnOnce "setxkbmap -option caps:escape"
     spawnOnce "picom --fade-in-step=1 --fade-out-step=1 --fade-delta=0 &"
     spawnOnce "xsetroot -cursor_name left_ptr"
+    spawnOnce "
 
-myLayoutHook = tiled ||| Mirror tiled ||| Full
-  where
-     tiled   = Tall nmaster delta ratio
-     nmaster = 1
-     ratio   = 1/2
-     delta   = 1/100
-
+myEventHook :: Event -> X All
 myEventHook = mempty
 
+myManageHook :: ManageHook
 myManageHook = composeAll
     [ manageDocks
     , className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
     , className =? "Zoom"           --> doFloat
+    , className =? "Discord"        --> doShift (myWorkspaces !! 7)
+    , className =? "Thunderbird"    --> doShift (myWorkspaces !! 8)
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     ]
+    <+> insertPosition Below Newer
+
+---------------------------------------------------------------------------------------------------
+-- SCRATCHPAD
+
+-- nothing yet
+
+---------------------------------------------------------------------------------------------------
+-- LAYOUTS
+
+mySpacing :: Integer -> l a -> ModifiedLayout Spacing l a
+mySpacing i = spacingRaw False (Border 0 i 0 i) True (Border i 0 i 0) True
+
+tall =
+  renamed [Replace "Tall"] $
+    mySpacing myGaps $
+        ResizableTall 1 (3/100) (1/2) []
+
+wide =
+  renamed [Replace "Wide"] $
+    mySpacing myGaps $
+        Mirror (Tall 1 (3 / 100) (1 / 2))
+
+full =
+  renamed [Replace "Full"] $
+    mySpacing myGaps $
+        Full
+
+myLayout =
+  avoidStruts $ smartBorders myDefaultLayout
+  where
+    myDefaultLayout = full ||| tall
 
 ---------------------------------------------------------------------------------------------------
 -- WORKSPACES
 
+myWorkspaces :: [String]
 myWorkspaces         = ["term", "web", "misc", "4", "5", "6", "7", "coms", "mail"]
+
+myWorkspaceIndices :: M.Map String Int
 myWorkspaceIndices = M.fromList $ zip myWorkspaces [1..]
+
+clickable :: String -> String
 clickable ws = "<action=xdotool key super+" ++ show i ++ ">" ++ ws ++ "</action>"
   where
     i = fromJust $ M.lookup ws myWorkspaceIndices
@@ -139,21 +193,26 @@ clickable ws = "<action=xdotool key super+" ++ show i ++ ">" ++ ws ++ "</action>
 ---------------------------------------------------------------------------------------------------
 -- KEYS
 
+myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     concat $
     [
         [
+        -- spawns
           ((modm, xK_Return), spawn $ XMonad.terminal conf)
         , ((modm, xK_d), spawn "dmenu_run")
+        , ((modm, xK_f), spawn myFilemanager)
+        , ((modm, xK_b), spawn myBrowser)
+        , ((modm, xK_m), spawn myMail)
+
         , ((modm, xK_q), kill)
-        , ((modm, xK_space), sendMessage NextLayout)
-        , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
+        , ((modm, xK_s), sendMessage NextLayout)
+        , ((modm .|. shiftMask, xK_s), setLayout $ XMonad.layoutHook conf)
         , ((modm, xK_n), refresh)
         , ((modm, xK_Tab), windows W.focusDown)
         , ((modm, xK_j), windows W.focusDown)
         , ((modm, xK_k), windows W.focusUp  )
         , ((modm, xK_m), windows W.focusMaster  )
-        , ((modm .|. shiftMask, xK_Return), windows W.swapMaster)
         , ((modm .|. shiftMask, xK_j), windows W.swapDown  )
         , ((modm .|. shiftMask, xK_k), windows W.swapUp    )
         , ((modm, xK_h), sendMessage Shrink)
@@ -171,6 +230,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         , ((0, xF86XK_AudioLowerVolume), spawn "pamixer -d 3")
         --lock screen
         , ((modm .|. controlMask, xK_l), spawn "slock")
+        -- screenshots
+        , ((modm, xK_Print),                 spawn "flameshot screen -p ~/Pictures/screenshots")
+        , ((modm .|. shiftMask, xK_Print),   spawn "flameshot full -p ~/Pictures/screenshots")
+        , ((modm .|. controlMask, xK_Print), spawn "flameshot gui")
         ]
     ,
         -- change workspaces
@@ -187,6 +250,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 ----------------------------------------------------------------------------------------------------
 -- MOUSE
 
+myMouseBindings :: XConfig Layout -> M.Map (KeyMask, Button) (Window -> X ())
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
                                        >> windows W.shiftMaster))
@@ -194,6 +258,9 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, button3), (\w -> focus w >> mouseResizeWindow w
                                        >> windows W.shiftMaster))
     ]
+
+----------------------------------------------------------------------------------------------------
+-- MAIN
 
 main :: IO ()
 main = do
@@ -208,27 +275,19 @@ main = do
         , focusedBorderColor = myFocusedBorderColor
         , normalBorderColor  = myNormalBorderColor
         , keys               = myKeys
-        , layoutHook         = avoidStruts myLayoutHook
+        , layoutHook         = avoidStruts myLayout
         , manageHook         = myManageHook
         , handleEventHook    = myEventHook
         , startupHook        = myStartupHook
         , logHook            = dynamicLogWithPP $ xmobarPP
-            { ppOutput          = hPutStrLn bar
+            { ppCurrent         = xmobarColor (green myColor) "" . wrap "[" "]"
+            , ppVisible         = xmobarColor (white myColor) "" . wrap "" "" . clickable
+            , ppHidden          = xmobarColor (yellow myColor) "" . wrap "" "" . clickable
+            , ppHiddenNoWindows = xmobarColor (white myColor) "" . clickable
             , ppSep             = " | "
+            , ppTitle           = xmobarColor (white myColor) "" . shorten 60
+            , ppLayout          = xmobarColor  (white myColor) ""
+            , ppOutput          = hPutStrLn bar
             , ppOrder           = \(ws : l : t : ex) -> [ws, l, t]
             }
         }
-
-
--- TODO:
-{-
-
-xmobar widgets such as: workspaces, discord, network and bluetooth
-layout algorithm
-keybinds?
-display locker
-lightDM
-add type signatures
-
-
--}
