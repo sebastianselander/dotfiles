@@ -1,5 +1,3 @@
-{-# LANGUAGE TypeApplications #-}
-
 -- core
 import XMonad
 import Data.Monoid
@@ -9,16 +7,17 @@ import System.Exit
 import Data.Tree
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
-import Data.Maybe (fromJust)
+import Data.Maybe
 
 -- system
-import System.Exit (exitSuccess)
-import System.IO (hPutStrLn)
+import System.Exit
+import System.IO
 
 -- hooks
-import XMonad.Hooks.ManageDocks(avoidStruts, docks, manageDocks, ToggleStruts(..))
-import XMonad.Hooks.DynamicLog(dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
+import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.StatusBar
 
 -- layout
 import XMonad.Layout.Renamed
@@ -28,11 +27,12 @@ import XMonad.Layout.ResizableTile
 import XMonad.Layout.LayoutModifier(ModifiedLayout)
 
 -- actions
-import XMonad.Actions.CopyWindow(copy, kill1, copyToAll, killAllOtherCopies)
-import XMonad.Actions.Submap(submap)
+import XMonad.Actions.CopyWindow
+import XMonad.Actions.Submap
+import XMonad.Actions.DynamicProjects
 
 -- utils
-import XMonad.Util.Run (spawnPipe)
+import XMonad.Util.Run
 
 --import XMonad.Util.SpawnOnce
 import XMonad.Util.NamedScratchpad
@@ -51,6 +51,8 @@ import XMonad.Prompt.FuzzyMatch
 
 
 ---------------------------------------------------------------------------------------------------
+-- COLOR SCHEMES
+
 data Colorscheme = Colorscheme
                  { black :: String
                  , white :: String
@@ -98,27 +100,44 @@ myMail               = "thunderbird"                     :: String
 myFont               = "Iosevka Term Nerd Font Complete" :: String
 
 ---------------------------------------------------------------------------------------------------
--- XMOBAR
+-- HOOKS
 
-
----------------------------------------------------------------------------------------------------
--- LOG HOOKS
-
-myLogHook            = return ()
 myStartupHook        = do
     spawnOnce "nitrogen --restore &"
-    spawnOnce "xmodmap -e \"keycode 66 = Escape\""
+    spawnOnce "setxkbmap -option caps:escape"
     spawnOnce "picom --fade-in-step=1 --fade-out-step=1 --fade-delta=0 &"
-myEventHook          = mempty
+    spawnOnce "xsetroot -cursor_name left_ptr"
 
+myLayoutHook = tiled ||| Mirror tiled ||| Full
+  where
+     tiled   = Tall nmaster delta ratio
+     nmaster = 1
+     ratio   = 1/2
+     delta   = 1/100
+
+myEventHook = mempty
+
+myManageHook = composeAll
+    [ manageDocks
+    , className =? "MPlayer"        --> doFloat
+    , className =? "Gimp"           --> doFloat
+    , className =? "Zoom"           --> doFloat
+    , resource  =? "desktop_window" --> doIgnore
+    , resource  =? "kdesktop"       --> doIgnore
+    ]
 
 ---------------------------------------------------------------------------------------------------
+-- WORKSPACES
 
-myWorkspaces         = map show [1 .. 9]
+myWorkspaces         = ["term", "web", "misc", "4", "5", "6", "7", "coms", "mail"]
 myWorkspaceIndices = M.fromList $ zip myWorkspaces [1..]
 clickable ws = "<action=xdotool key super+" ++ show i ++ ">" ++ ws ++ "</action>"
   where
     i = fromJust $ M.lookup ws myWorkspaceIndices
+
+
+---------------------------------------------------------------------------------------------------
+-- KEYS
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     concat $
@@ -126,7 +145,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         [
           ((modm, xK_Return), spawn $ XMonad.terminal conf)
         , ((modm, xK_d), spawn "dmenu_run")
-        , ((modm, xK_p), spawn "gmrun")
         , ((modm, xK_q), kill)
         , ((modm, xK_space), sendMessage NextLayout)
         , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
@@ -145,12 +163,14 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         , ((modm, xK_period), sendMessage (IncMasterN (-1)))
         , ((modm .|. shiftMask, xK_c), spawn "xmonad --recompile; xmonad --restart")
         -- brightness
-        , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 5")
-        , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
+        , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 3")
+        , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 3")
         -- volume
         , ((0, xF86XK_AudioMute), spawn "amixer set Master 'toggle'")
-        , ((0, xF86XK_AudioRaiseVolume), spawn "pamixer -i 5")
-        , ((0, xF86XK_AudioLowerVolume), spawn "pamixer -d 5")
+        , ((0, xF86XK_AudioRaiseVolume), spawn "pamixer -i 3")
+        , ((0, xF86XK_AudioLowerVolume), spawn "pamixer -d 3")
+        --lock screen
+        , ((modm .|. controlMask, xK_l), spawn "slock")
         ]
     ,
         -- change workspaces
@@ -164,6 +184,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
             , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
     ]
 
+----------------------------------------------------------------------------------------------------
+-- MOUSE
+
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
                                        >> windows W.shiftMaster))
@@ -172,45 +195,10 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = tiled ||| Mirror tiled ||| Full
-  where
-     tiled   = Tall nmaster delta ratio
-     nmaster = 1
-     ratio   = 1/2
-     delta   = 1/100
-
-myManageHook = composeAll
-    [ manageDocks
-    , className =? "MPlayer"        --> doFloat
-    , className =? "Gimp"           --> doFloat
-    , className =? "Zoom"           --> doFloat
-    , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore
-    ]
-
-
-myConfig = def {
-        terminal           = myTerminal,
-        focusFollowsMouse  = myFocusFollowsMouse,
-        clickJustFocuses   = myClickJustFocuses,
-        borderWidth        = myBorderWidth,
-        modMask            = myModMask,
-        workspaces         = myWorkspaces,
-        normalBorderColor  = myNormalBorderColor,
-        focusedBorderColor = myFocusedBorderColor,
-        keys               = myKeys,
-        mouseBindings      = myMouseBindings,
-        layoutHook         = myLayout,
-        manageHook         = myManageHook,
-        handleEventHook    = myEventHook,
-        logHook            = myLogHook,
-        startupHook        = myStartupHook
-    }
-
 main :: IO ()
 main = do
-  xmproc0 <- spawnPipe "xmobar -x 0 ~/.config/xmonad/xmobar.config"
-  xmonad $ docks $ ewmh def
+    bar <- spawnPipe "xmobar -x 0 ~/.config/xmonad/xmobar.config"
+    xmonad . docks . ewmh $ def
         { terminal           = myTerminal
         , focusFollowsMouse  = myFocusFollowsMouse
         , clickJustFocuses   = myClickJustFocuses
@@ -220,20 +208,27 @@ main = do
         , focusedBorderColor = myFocusedBorderColor
         , normalBorderColor  = myNormalBorderColor
         , keys               = myKeys
-        , layoutHook         = avoidStruts myLayout
+        , layoutHook         = avoidStruts myLayoutHook
         , manageHook         = myManageHook
         , handleEventHook    = myEventHook
         , startupHook        = myStartupHook
         , logHook            = dynamicLogWithPP $ xmobarPP
-                                                { ppCurrent         = xmobarColor (green myColor) "" . wrap "[" "]",
-                                                  ppVisible         = xmobarColor (white myColor) "" . wrap "" "" . clickable,
-                                                  ppHidden          = xmobarColor (yellow myColor) "" . wrap "" "" . clickable,
-                                                  ppHiddenNoWindows = xmobarColor (white myColor) "" . clickable,
-                                                  ppSep             = " | ",
-                                                  ppTitle           = xmobarColor (white myColor) "" . shorten 60,
-                                                  ppLayout          = xmobarColor  (white myColor) "",
-                                                  ppOutput          = \x -> hPutStrLn xmproc0 x,
-                                                  --ppExtras          = [windowCount],
-                                                  ppOrder           = \(ws : l : t : ex) -> [ws, l, t]
-                                                }
+            { ppOutput          = hPutStrLn bar
+            , ppSep             = " | "
+            , ppOrder           = \(ws : l : t : ex) -> [ws, l, t]
+            }
         }
+
+
+-- TODO:
+{-
+
+xmobar widgets such as: workspaces, discord, network and bluetooth
+layout algorithm
+keybinds?
+display locker
+lightDM
+add type signatures
+
+
+-}
