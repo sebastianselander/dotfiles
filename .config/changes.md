@@ -1,5 +1,7 @@
 # Change to natural scrolling for touchpad
 
+Put in `/usr/share/X11/xorg.conf.d/40-libinput.conf`
+
 ```
 Section "InputClass"
         Identifier "libinput touchpad catchall"
