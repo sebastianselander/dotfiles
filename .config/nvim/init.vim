@@ -68,7 +68,7 @@ colorscheme gruber
 
 
 "" terminal style cursor
-set guicursor=n-v-c:block-Cursor
+" set guicursor=n-v-c:block-Cursor
 
 let g:haskell_enable_quantification   = 1
 let g:haskell_enable_recursivedo      = 1
