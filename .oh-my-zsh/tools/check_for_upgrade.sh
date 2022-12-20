@@ -171,7 +171,7 @@ function has_typed_input() {
 
   # Test if Oh My Zsh directory is a git repository
   if ! (builtin cd -q "$ZSH" && LANG= git rev-parse &>/dev/null); then
-    echo >&2 "[oh-my-zsh] Can't update: not a git repository."
+    # echo >&2 "[oh-my-zsh] Can't update: not a git repository."
     return
   fi
 
