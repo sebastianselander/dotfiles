@@ -126,7 +126,6 @@ myStartupHook        = do
     spawnOnce "setxkbmap -option caps:escape"
     spawnOnce "picom --fade-in-step=1 --fade-out-step=1 --fade-delta=0 &"
     spawnOnce "xsetroot -cursor_name left_ptr"
-    spawnOnce "
 
 myEventHook :: Event -> X All
 myEventHook = mempty
@@ -155,6 +154,11 @@ myManageHook = composeAll
 mySpacing :: Integer -> l a -> ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border 0 i 0 i) True (Border i 0 i 0) True
 
+threeCols =
+    renamed [Replace "Column"] $
+        mySpacing myGaps $
+            ThreeCol 1 (3/100) (1/2)
+
 tall =
   renamed [Replace "Tall"] $
     mySpacing myGaps $
@@ -173,13 +177,13 @@ full =
 myLayout =
   avoidStruts $ smartBorders myDefaultLayout
   where
-    myDefaultLayout = full ||| tall
+    myDefaultLayout = full ||| tall ||| threeCols
 
 ---------------------------------------------------------------------------------------------------
 -- WORKSPACES
 
 myWorkspaces :: [String]
-myWorkspaces         = ["term", "web", "misc", "4", "5", "6", "7", "coms", "mail"]
+myWorkspaces         = ["term", "web", "misc"] <> map show [4..7] <> ["coms", "mail"]
 
 myWorkspaceIndices :: M.Map String Int
 myWorkspaceIndices = M.fromList $ zip myWorkspaces [1..]

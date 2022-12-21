@@ -4,8 +4,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
-path+=("$HOME/.ghcup/bin/")
-
+# path=+("$HOME/.ghcup/bin/")
+export PATH=$HOME/.ghcup/bin/:$PATH
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -113,16 +113,14 @@ gitpush() {
     git push
 }
 alias gacp=gitpush
+alias gc='git commit'
+alias gp='git push'
+alias ga='git add'
 
 alias cfg='cd ~/.config'
 alias ls='exa --group-directories-first'
 alias lsa='exa --group-directories-first -la'
 alias lst='exa -s modified -1'
-
-# safer
-alias rm='rm -I'
-alias cp='cp -i'
-alias mv='mv -i'
 
 # smoother
 alias ..='cd ..'
@@ -131,5 +129,5 @@ alias ......='cd ../../..'
 
 alias vim='nvim'
 
-# easy dotfile management using bare repo
+# easy dotfile management using bare repo `config commit -m "this is an example"`
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
