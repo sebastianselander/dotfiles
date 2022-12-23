@@ -121,7 +121,7 @@ myFont               = "Iosevka Term Nerd Font Complete" :: String -- not used y
 -- HOOKS
 
 myStartupHook :: X ()
-myStartupHook        = do
+myStartupHook = do
     spawnOnce "nitrogen --restore &"
     spawnOnce "setxkbmap -option caps:escape"
     spawnOnce "picom --fade-in-step=1 --fade-out-step=1 --fade-delta=0 &"
@@ -136,12 +136,11 @@ myManageHook = composeAll
     , className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
     , className =? "Zoom"           --> doFloat
-    , className =? "Discord"        --> doShift (myWorkspaces !! 7)
-    , className =? "Thunderbird"    --> doShift (myWorkspaces !! 8)
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     ]
     <+> insertPosition Below Newer
+
 
 ---------------------------------------------------------------------------------------------------
 -- SCRATCHPAD
