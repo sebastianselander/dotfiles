@@ -30,6 +30,7 @@ import XMonad.Layout.Gaps
 import XMonad.Layout.Spiral
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Reflect
+import XMonad.Layout.Grid
 
 -- actions
 import XMonad.Actions.CopyWindow
@@ -105,7 +106,7 @@ myGruvbox = Colorscheme
 
 myModMask            = mod4Mask                          :: KeyMask
 myFocusFollowsMouse  = False                             :: Bool
-myClickJustFocuses   = True                              :: Bool
+myClickJustFocuses   = False                             :: Bool
 myBorderWidth        = 4                                 :: Dimension
 myGaps               = 5                                 :: Integer
 myColor              = myGruber                          :: Colorscheme
@@ -153,36 +154,25 @@ myManageHook = composeAll
 mySpacing :: Integer -> l a -> ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border 0 i 0 i) True (Border i 0 i 0) True
 
-threeCols =
-    renamed [Replace "Column"] $
-        mySpacing myGaps $
-            ThreeCol 1 (3/100) (1/2)
+threeCols = renamed [Replace "Column"] $ mySpacing myGaps $ ThreeCol 1 (3/100) (1/2)
 
-tall =
-  renamed [Replace "Tall"] $
-    mySpacing myGaps $
-        ResizableTall 1 (3/100) (1/2) []
+tall = renamed [Replace "Tall"] . mySpacing myGaps $ ResizableTall 1 (3/100) (1/2) []
 
-wide =
-  renamed [Replace "Wide"] $
-    mySpacing myGaps $
-        Mirror (Tall 1 (3 / 100) (1 / 2))
+wide = renamed [Replace "Wide"] . mySpacing myGaps $ Mirror (Tall 1 (3 / 100) (1 / 2))
 
-full =
-  renamed [Replace "Full"] $
-    mySpacing myGaps $
-        Full
+full = renamed [Replace "Full"] . mySpacing myGaps $ Full
 
-myLayout =
-  avoidStruts $ smartBorders myDefaultLayout
+grid = renamed [Replace "Grid"] . mySpacing myGaps $ Grid
+
+myLayout = avoidStruts $ smartBorders myDefaultLayout
   where
-    myDefaultLayout = full ||| tall ||| threeCols
+    myDefaultLayout = full ||| tall ||| threeCols ||| grid
 
 ---------------------------------------------------------------------------------------------------
 -- WORKSPACES
 
 myWorkspaces :: [String]
-myWorkspaces         = ["term", "web", "misc"] <> map show [4..7] <> ["coms", "mail"]
+myWorkspaces = ["term", "web", "misc"] <> map show [4..7] <> ["coms", "mail"]
 
 myWorkspaceIndices :: M.Map String Int
 myWorkspaceIndices = M.fromList $ zip myWorkspaces [1..]
