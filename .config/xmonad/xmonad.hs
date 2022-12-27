@@ -31,6 +31,8 @@ import XMonad.Layout.Spiral
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Reflect
 import XMonad.Layout.Grid
+import XMonad.Layout.ToggleLayouts
+import XMonad.Layout.Tabbed
 
 -- actions
 import XMonad.Actions.CopyWindow
@@ -104,19 +106,19 @@ myGruvbox = Colorscheme
 ---------------------------------------------------------------------------------------------------
 -- USER VARIABLES
 
-myModMask            = mod4Mask                          :: KeyMask
-myFocusFollowsMouse  = False                             :: Bool
-myClickJustFocuses   = False                             :: Bool
-myBorderWidth        = 4                                 :: Dimension
-myGaps               = 5                                 :: Integer
-myColor              = myGruber                          :: Colorscheme
-myNormalBorderColor  = "#dddddd"                         :: String
-myFocusedBorderColor = "#ffd700"                         :: String
-myTerminal           = "kitty"                           :: String
-myFilemanager        = "pcmanfm"                         :: String
-myBrowser            = "firefox"                         :: String
-myMail               = "thunderbird"                     :: String
-myFont               = "Iosevka Term Nerd Font Complete" :: String -- not used yet
+myModMask            = mod4Mask                                                :: KeyMask
+myFocusFollowsMouse  = False                                                   :: Bool
+myClickJustFocuses   = False                                                   :: Bool
+myBorderWidth        = 4                                                       :: Dimension
+myGaps               = 5                                                       :: Integer
+myColor              = myGruber                                                :: Colorscheme
+myNormalBorderColor  = "#dddddd"                                               :: String
+myFocusedBorderColor = "#ffd700"                                               :: String
+myTerminal           = "kitty"                                                 :: String
+myFilemanager        = "pcmanfm"                                               :: String
+myBrowser            = "firefox"                                               :: String
+myMail               = "thunderbird"                                           :: String
+myFont               = "xft:Iosevka Nerd Font:size=11:SemiBold:antialias=true" :: String
 
 ---------------------------------------------------------------------------------------------------
 -- HOOKS
@@ -154,19 +156,26 @@ myManageHook = composeAll
 mySpacing :: Integer -> l a -> ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border 0 i 0 i) True (Border i 0 i 0) True
 
+full = renamed [Replace "Full"] . mySpacing myGaps $ Full
+
 threeCols = renamed [Replace "Column"] $ mySpacing myGaps $ ThreeCol 1 (3/100) (1/2)
 
 tall = renamed [Replace "Tall"] . mySpacing myGaps $ ResizableTall 1 (3/100) (1/2) []
 
 wide = renamed [Replace "Wide"] . mySpacing myGaps $ Mirror (Tall 1 (3 / 100) (1 / 2))
 
-full = renamed [Replace "Full"] . mySpacing myGaps $ Full
-
 grid = renamed [Replace "Grid"] . mySpacing myGaps $ Grid
+
+tabs = renamed [Replace "Tabbed"] . mySpacing myGaps $ tabbed shrinkText myTabConfig
 
 myLayout = avoidStruts $ smartBorders myDefaultLayout
   where
-    myDefaultLayout = full ||| tall ||| threeCols ||| grid
+    myDefaultLayout = fullTog tall ||| fullTog threeCols ||| tabs
+      where
+          fullTog l = toggleLayouts full l
+
+myTabConfig :: Theme
+myTabConfig = def { fontName = myFont }
 
 ---------------------------------------------------------------------------------------------------
 -- WORKSPACES
@@ -182,7 +191,6 @@ clickable ws = "<action=xdotool key super+" ++ show i ++ ">" ++ ws ++ "</action>
   where
     i = fromJust $ M.lookup ws myWorkspaceIndices
 
-
 ---------------------------------------------------------------------------------------------------
 -- KEYS
 
@@ -194,20 +202,20 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         -- spawns
           ((modm, xK_Return), spawn $ XMonad.terminal conf)
         , ((modm, xK_d), spawn "dmenu_run")
-        , ((modm, xK_f), spawn myFilemanager)
+        , ((modm, xK_o), spawn myFilemanager)
         , ((modm, xK_b), spawn myBrowser)
-        , ((modm, xK_m), spawn myMail)
 
         , ((modm, xK_q), kill)
         , ((modm, xK_s), sendMessage NextLayout)
+        , ((modm, xK_f), sendMessage (Toggle "Full"))
         , ((modm .|. shiftMask, xK_s), setLayout $ XMonad.layoutHook conf)
         , ((modm, xK_n), refresh)
         , ((modm, xK_Tab), windows W.focusDown)
         , ((modm, xK_j), windows W.focusDown)
-        , ((modm, xK_k), windows W.focusUp  )
-        , ((modm, xK_m), windows W.focusMaster  )
-        , ((modm .|. shiftMask, xK_j), windows W.swapDown  )
-        , ((modm .|. shiftMask, xK_k), windows W.swapUp    )
+        , ((modm, xK_k), windows W.focusUp)
+        , ((modm, xK_m), windows W.focusMaster)
+        , ((modm .|. shiftMask, xK_j), windows W.swapDown)
+        , ((modm .|. shiftMask, xK_k), windows W.swapUp)
         , ((modm, xK_h), sendMessage Shrink)
         , ((modm, xK_l), sendMessage Expand)
         , ((modm, xK_t), withFocused $ windows . W.sink)
@@ -222,11 +230,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         , ((0, xF86XK_AudioRaiseVolume), spawn "pamixer -i 3")
         , ((0, xF86XK_AudioLowerVolume), spawn "pamixer -d 3")
         --lock screen
-        , ((modm .|. controlMask, xK_l), spawn "slock")
+        , ((modm .|. controlMask, xK_l), spawn "i3lock-fancy --pixelate --greyscale -f \"Iosevka-Term-Medium-Nerd-Font-Complete\"")
         -- screenshots
-        , ((modm, xK_Print),                 spawn "flameshot screen -p ~/Pictures/screenshots")
-        , ((modm .|. shiftMask, xK_Print),   spawn "flameshot full -p ~/Pictures/screenshots")
-        , ((modm .|. controlMask, xK_Print), spawn "flameshot gui")
+        , ((0                , xK_Print), spawn "flameshot gui")
+        , ((0 .|. shiftMask  , xK_Print), spawn "flameshot screen -p ~/Pictures/screenshots")
+        , ((0 .|. controlMask, xK_Print), spawn "flameshot full -p ~/Pictures/screenshots")
         ]
     ,
         -- change workspaces
