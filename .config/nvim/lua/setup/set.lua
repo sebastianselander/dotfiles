@@ -1,4 +1,6 @@
-vim.cmd('colorscheme gruber')
+vim.cmd.colorscheme "ayu"
+
+vim.opt.background = "dark"
 
 vim.opt.guicursor = ""
 vim.opt.cursorline = true
@@ -36,3 +38,5 @@ vim.opt.isfname:append"@-@"
 vim.opt.updatetime = 100
 
 vim.opt.colorcolumn = "100"
+
+vim.g.netrw_bufsettings = "noma nomod nu nowrap ro nobl"

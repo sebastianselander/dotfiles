@@ -19,9 +19,18 @@ return require('packer').startup(function(use)
     use('tpope/vim-surround')
     use('tpope/vim-commentary')
     use('itchyny/lightline.vim')
-
     use('lervag/vimtex')
+    use('theprimeagen/harpoon')
+    use('neovimhaskell/haskell-vim')
+
+
+    -- Themes
     use('ayu-theme/ayu-vim')
     use('https://gitlab.com/madyanov/gruber.vim')
-    use('neovimhaskell/haskell-vim')
+    use('rakr/vim-one')
+    use('Pocco81/true-zen.nvim')
+    use('projekt0n/github-nvim-theme')
+    use("catppuccin/nvim")
+
 end)
+

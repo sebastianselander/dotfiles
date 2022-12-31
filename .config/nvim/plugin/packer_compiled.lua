@@ -79,10 +79,20 @@ _G.packer_plugins = {
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/ayu-vim",
     url = "https://github.com/ayu-theme/ayu-vim"
   },
+  ["github-nvim-theme"] = {
+    loaded = true,
+    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/github-nvim-theme",
+    url = "https://github.com/projekt0n/github-nvim-theme"
+  },
   ["gruber.vim"] = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/gruber.vim",
     url = "https://gitlab.com/madyanov/gruber.vim"
+  },
+  harpoon = {
+    loaded = true,
+    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/harpoon",
+    url = "https://github.com/theprimeagen/harpoon"
   },
   ["haskell-vim"] = {
     loaded = true,
@@ -93,6 +103,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/lightline.vim",
     url = "https://github.com/itchyny/lightline.vim"
+  },
+  nvim = {
+    loaded = true,
+    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/nvim",
+    url = "https://github.com/catppuccin/nvim"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -114,6 +129,11 @@ _G.packer_plugins = {
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["true-zen.nvim"] = {
+    loaded = true,
+    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/true-zen.nvim",
+    url = "https://github.com/Pocco81/true-zen.nvim"
+  },
   undotree = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/undotree",
@@ -128,6 +148,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-one"] = {
+    loaded = true,
+    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/vim-one",
+    url = "https://github.com/rakr/vim-one"
   },
   ["vim-surround"] = {
     loaded = true,
