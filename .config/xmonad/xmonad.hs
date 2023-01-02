@@ -182,7 +182,7 @@ myTabConfig = def { fontName = myFont }
 -- WORKSPACES
 
 myWorkspaces :: [String]
-myWorkspaces = ["term", "web", "misc"] <> map show [4..7] <> ["coms", "mail"]
+myWorkspaces = map show [1..9]
 
 myWorkspaceIndices :: M.Map String Int
 myWorkspaceIndices = M.fromList $ zip myWorkspaces [1..]
