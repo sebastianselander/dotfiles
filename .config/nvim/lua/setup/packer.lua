@@ -5,7 +5,7 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
     -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+    use('wbthomason/packer.nvim')
 
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -22,15 +22,11 @@ return require('packer').startup(function(use)
     use('lervag/vimtex')
     use('theprimeagen/harpoon')
     use('neovimhaskell/haskell-vim')
-
+    use('Pocco81/true-zen.nvim')
+    use('tpope/vim-repeat')
 
     -- Themes
     use('ayu-theme/ayu-vim')
     use('https://gitlab.com/madyanov/gruber.vim')
     use('rakr/vim-one')
-    use('Pocco81/true-zen.nvim')
-    use('projekt0n/github-nvim-theme')
-    use("catppuccin/nvim")
-
 end)
-
