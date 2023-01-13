@@ -129,6 +129,7 @@ myStartupHook = do
     spawnOnce "setxkbmap -option caps:escape"
     spawnOnce "picom --fade-in-step=1 --fade-out-step=1 --fade-delta=0 &"
     spawnOnce "xsetroot -cursor_name left_ptr"
+    spawnOnce "mullvad connect"
 
 myEventHook :: Event -> X All
 myEventHook = mempty

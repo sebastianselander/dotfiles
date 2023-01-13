@@ -23,17 +23,28 @@ return require('packer').startup(function(use)
         requires = { {'nvim-lua/plenary.nvim'} }
     }
 
-    use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-    use('mbbill/undotree')
-    use('tpope/vim-fugitive')
-    use('tpope/vim-surround')
-    use('tpope/vim-commentary')
-    use('itchyny/lightline.vim')
-    use('lervag/vimtex')
-    use('theprimeagen/harpoon')
-    use('neovimhaskell/haskell-vim')
-    use('Pocco81/true-zen.nvim')
-    use('tpope/vim-repeat')
+    use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+    use 'mbbill/undotree'
+    use 'tpope/vim-fugitive'
+    use 'tpope/vim-surround'
+    use 'tpope/vim-commentary'
+    use 'itchyny/lightline.vim'
+    use 'lervag/vimtex'
+    use 'theprimeagen/harpoon'
+    use 'neovimhaskell/haskell-vim'
+    use 'Pocco81/true-zen.nvim'
+    use 'tpope/vim-repeat'
+    use 'machakann/vim-highlightedyank'
+    use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+        require("toggleterm").setup()
+    end}
+
+    use {
+        'MrcJkb/haskell-tools.nvim',
+        requires = {
+            'neovim/nvim-lspconfig',
+        },
+    }
 
     -- Themes
     use('ayu-theme/ayu-vim')

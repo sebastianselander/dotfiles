@@ -1,4 +1,4 @@
-vim.cmd.colorscheme "ayu"
+vim.cmd.colorscheme "one"
 
 vim.opt.background = "dark"
 
