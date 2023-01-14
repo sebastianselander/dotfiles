@@ -38,14 +38,15 @@ return require('packer').startup(function(use)
     use {"akinsho/toggleterm.nvim", tag = '*', config = function()
         require("toggleterm").setup()
     end}
-
     use {
         'MrcJkb/haskell-tools.nvim',
         requires = {
             'neovim/nvim-lspconfig',
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim', -- optional
         },
+        -- tag = 'x.y.z' -- [^1]
     }
-
     -- Themes
     use('ayu-theme/ayu-vim')
     use('https://gitlab.com/madyanov/gruber.vim')
