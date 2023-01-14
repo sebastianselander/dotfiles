@@ -2,7 +2,8 @@
 
 STATUS=$(mullvad status | awk '{ print $1 }')
 if [ $STATUS = "Connected" ]; then
-    echo "Mullvad: On"
+    echo -e "Mullvad: On"
 else
-    echo "Mullvad: Off"
+    echo -e "Mullvad: Off"
 fi
+

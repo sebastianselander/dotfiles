@@ -79,11 +79,6 @@ _G.packer_plugins = {
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/ayu-vim",
     url = "https://github.com/ayu-theme/ayu-vim"
   },
-  ["gruber.vim"] = {
-    loaded = true,
-    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/gruber.vim",
-    url = "https://gitlab.com/madyanov/gruber.vim"
-  },
   harpoon = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/harpoon",
@@ -103,6 +98,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/lightline.vim",
     url = "https://github.com/itchyny/lightline.vim"
+  },
+  ["nvim-base16"] = {
+    loaded = true,
+    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/nvim-base16",
+    url = "https://github.com/RRethy/nvim-base16"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -159,11 +159,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/vim-highlightedyank",
     url = "https://github.com/machakann/vim-highlightedyank"
-  },
-  ["vim-one"] = {
-    loaded = true,
-    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/vim-one",
-    url = "https://github.com/rakr/vim-one"
   },
   ["vim-repeat"] = {
     loaded = true,

@@ -49,6 +49,5 @@ return require('packer').startup(function(use)
     }
     -- Themes
     use('ayu-theme/ayu-vim')
-    use('https://gitlab.com/madyanov/gruber.vim')
-    use('rakr/vim-one')
+    use('RRethy/nvim-base16')
 end)

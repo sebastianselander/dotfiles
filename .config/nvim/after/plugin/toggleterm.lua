@@ -1,5 +1,5 @@
 require("toggleterm").setup {
-    size = vim.o.columns * 0.5,
+    size = vim.o.columns * 0.45,
     direction = 'vertical', 
     open_mapping = [[<C-0>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
