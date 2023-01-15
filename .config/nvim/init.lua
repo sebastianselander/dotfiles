@@ -35,9 +35,12 @@ return require('packer').startup(function(use)
     use 'Pocco81/true-zen.nvim'
     use 'tpope/vim-repeat'
     use 'machakann/vim-highlightedyank'
+    use 'norcalli/nvim-colorizer.lua'
+
     use {"akinsho/toggleterm.nvim", tag = '*', config = function()
         require("toggleterm").setup()
     end}
+
     use {
         'MrcJkb/haskell-tools.nvim',
         requires = {
