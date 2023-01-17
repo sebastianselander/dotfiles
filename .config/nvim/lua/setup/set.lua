@@ -32,11 +32,13 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "auto"
 vim.opt.isfname:append"@-@"
 
+vim.cmd("set formatoptions-=cro")
+
 vim.opt.updatetime = 100
 
 vim.opt.colorcolumn = "100"
 
 vim.g.netrw_bufsettings = "noma nomod nu nowrap ro nobl"
 
-vim.cmd("highlight Normal guibg=none")
-vim.cmd("highlight NonText guibg=none")
+-- vim.cmd("highlight Normal guibg=none")
+-- vim.cmd("highlight NonText guibg=none")
