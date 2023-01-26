@@ -16,3 +16,5 @@ ht.setup {
 vim.keymap.set('n', '<leader>rr', ht.repl.toggle, def_opts)
 -- Disable GHCi repl
 vim.keymap.set('n', '<leader>rq', ht.repl.quit, def_opts)
+-- Open project file
+vim.keymap.set('n', '<leader>rc', ht.project.open_package_cabal, def_opts)

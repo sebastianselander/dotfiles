@@ -131,6 +131,8 @@ alias ....='cd ../..'
 alias ......='cd ../../..'
 
 alias vim='nvim'
+alias con='mullvad connect'
+alias disc='mullvad disconnect'
 
 # easy dotfile management using bare repo `config commit -m "this is an example"`
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
