@@ -32,8 +32,6 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append"@-@"
 
-vim.cmd("set formatoptions-=cro")
-
 vim.opt.updatetime = 100
 
 vim.opt.colorcolumn = "100"
