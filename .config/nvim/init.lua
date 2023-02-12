@@ -36,6 +36,7 @@ return require('packer').startup(function(use)
     use 'tpope/vim-repeat'
     use 'machakann/vim-highlightedyank'
     use 'norcalli/nvim-colorizer.lua'
+    -- use 'sdiehl/vim-ormolu'
 
     use {"akinsho/toggleterm.nvim", tag = '*', config = function()
         require("toggleterm").setup()
