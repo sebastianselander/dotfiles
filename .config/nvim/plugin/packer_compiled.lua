@@ -87,7 +87,7 @@ _G.packer_plugins = {
   ["haskell-tools.nvim"] = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/haskell-tools.nvim",
-    url = "https://github.com/MrcJkb/haskell-tools.nvim"
+    url = "https://github.com/mrcjkb/haskell-tools.nvim"
   },
   ["haskell-vim"] = {
     loaded = true,

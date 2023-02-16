@@ -36,20 +36,16 @@ return require('packer').startup(function(use)
     use 'tpope/vim-repeat'
     use 'machakann/vim-highlightedyank'
     use 'norcalli/nvim-colorizer.lua'
-    -- use 'sdiehl/vim-ormolu'
+    use 'neovim/nvim-lspconfig'
+    use 'nvim-lua/plenary.nvim'
 
     use {"akinsho/toggleterm.nvim", tag = '*', config = function()
         require("toggleterm").setup()
     end}
 
     use {
-        'MrcJkb/haskell-tools.nvim',
-        requires = {
-            'neovim/nvim-lspconfig',
-            'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope.nvim', -- optional
-        },
-        -- tag = 'x.y.z' -- [^1]
+        'mrcjkb/haskell-tools.nvim',
+        branch = '1.x.x', -- recommended
     }
 
     -- Themes
