@@ -28,7 +28,7 @@ return require('packer').startup(function(use)
     use 'tpope/vim-fugitive'
     use 'tpope/vim-surround'
     use 'tpope/vim-commentary'
-    use 'itchyny/lightline.vim'
+    use 'nvim-lualine/lualine.nvim'
     use 'lervag/vimtex'
     use 'theprimeagen/harpoon'
     use 'neovimhaskell/haskell-vim'
@@ -38,7 +38,7 @@ return require('packer').startup(function(use)
     use 'norcalli/nvim-colorizer.lua'
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/plenary.nvim'
-
+    use 'Yggdroot/indentLine'
     use {"akinsho/toggleterm.nvim", tag = '*', config = function()
         require("toggleterm").setup()
     end}
@@ -49,6 +49,7 @@ return require('packer').startup(function(use)
     }
 
     -- Themes
-    use('ayu-theme/ayu-vim')
-    use('RRethy/nvim-base16')
+    -- use 'ayu-theme/ayu-vim'
+    use 'Shatur/neovim-ayu'
+    use 'navarasu/onedark.nvim'
 end)

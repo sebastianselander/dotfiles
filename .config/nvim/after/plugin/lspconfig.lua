@@ -12,10 +12,11 @@ nvim_lsp.hls.setup({
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
         vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, opts)
-        -- This crashes the entire setup for some reason
         vim.keymap.set('i', '<C-l>', vim.lsp.buf.signature_help, opts)
         vim.keymap.set('n', '<space>cf', function() vim.lsp.buf.format { async = true } end, bufopts)
         
+        vim.keymap.set('n', '<space>d', vim.diagnostic.open_float, opts)
+        --
         -- autoformat only for haskell
         if vim.api.nvim_buf_get_option(0, 'filetype') == 'haskell' then
             vim.api.nvim_command[[
@@ -26,7 +27,7 @@ nvim_lsp.hls.setup({
     settings = {
         haskell = {
             hlintOn = true,
-            formattingProvider = "fourmolu"
+            formattingProvider = "stylish-haskell"
         }
     }
 })

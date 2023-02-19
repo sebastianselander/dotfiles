@@ -1,3 +1,5 @@
+vim.cmd.colorscheme "ayu-dark"
+
 vim.opt.guicursor = ""
 vim.opt.cursorline = true
 vim.opt.mouse = ""

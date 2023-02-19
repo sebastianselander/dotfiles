@@ -4,5 +4,3 @@
 --     base08 = '#00AAFF', base09 = '#fc804e', base0A = '#e1b31a', base0B = '#5db129',
 --     base0C = '#21c992', base0D = '#00a3f2', base0E = '#b46ee0', base0F = '#b87d28'
 -- })
-
-vim.cmd.colorscheme "ayu"
