@@ -31,3 +31,28 @@ nvim_lsp.hls.setup({
         }
     }
 })
+
+-- Only update diagnostics on BufWrite (:w)
+-- vim.diagnostic.config({
+--     virtual_text = false,
+--     signs = false,
+--     underline = false,
+-- })
+
+-- local ns = vim.api.nvim_create_namespace("my_test_namespace")
+
+-- function show_diagnostics(bufnr)
+--     local diags = vim.diagnostic.get(bufnr)
+--     vim.diagnostic.show(ns, bufnr, diags, {
+--         virtual_text = true,
+--         signs = true,
+--         underline = true,
+--     })
+-- end
+
+-- vim.cmd [[
+-- augroup test
+--     autocmd!
+--     autocmd BufWritePost * lua show_diagnostics(tonumber(vim.fn.expand("<abuf>")))
+-- augroup END
+-- ]]
