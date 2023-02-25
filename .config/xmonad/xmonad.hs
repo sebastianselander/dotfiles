@@ -1,61 +1,62 @@
 -- core
-import XMonad
-import Data.Monoid
-import System.Exit
+import           Data.Monoid
+import           System.Exit
+import           XMonad
 
 -- window stack manipulation and map creation
-import Data.Tree
-import qualified XMonad.StackSet as W
-import qualified Data.Map        as M
-import Data.Maybe
+import qualified Data.Map                       as M
+import           Data.Maybe
+import           Data.Tree
+import qualified XMonad.StackSet                as W
 
 -- system
-import System.Exit
-import System.IO
+import           System.Exit
+import           System.IO
 
 -- hooks
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.StatusBar
-import XMonad.Hooks.InsertPosition
+import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.EwmhDesktops
+import           XMonad.Hooks.InsertPosition
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.StatusBar
 
 -- layout
-import XMonad.Layout.Renamed
-import XMonad.Layout.NoBorders
-import XMonad.Layout.Spacing
-import XMonad.Layout.ResizableTile
-import XMonad.Layout.LayoutModifier(ModifiedLayout)
-import XMonad.Layout.Gaps
-import XMonad.Layout.Spiral
-import XMonad.Layout.ThreeColumns
-import XMonad.Layout.Reflect
-import XMonad.Layout.Grid
-import XMonad.Layout.ToggleLayouts
-import XMonad.Layout.Tabbed
+import           XMonad.Layout.Gaps
+import           XMonad.Layout.Grid
+import           XMonad.Layout.LayoutModifier   (ModifiedLayout)
+import           XMonad.Layout.NoBorders
+import           XMonad.Layout.Reflect
+import           XMonad.Layout.Renamed
+import           XMonad.Layout.ResizableTile
+import           XMonad.Layout.Spacing
+import           XMonad.Layout.Spiral
+import           XMonad.Layout.Tabbed
+import           XMonad.Layout.ThreeColumns
+import           XMonad.Layout.ToggleLayouts
 
 -- actions
-import XMonad.Actions.CopyWindow
-import XMonad.Actions.Submap
-import XMonad.Actions.DynamicProjects
+import           XMonad.Actions.CopyWindow
+import           XMonad.Actions.DynamicProjects
+import           XMonad.Actions.SpawnOn
+import           XMonad.Actions.Submap
 
 -- utils
-import XMonad.Util.Run
+import           XMonad.Util.Run
 
 --import XMonad.Util.SpawnOnce
-import XMonad.Util.NamedScratchpad
-import XMonad.Util.SpawnOnce
+import           XMonad.Util.NamedScratchpad
+import           XMonad.Util.SpawnOnce
 
 -- keys
-import Graphics.X11.ExtraTypes.XF86
+import           Graphics.X11.ExtraTypes.XF86
 
 -- prompts
-import XMonad.Prompt
-import XMonad.Prompt.RunOrRaise
-import XMonad.Prompt.Window
-import XMonad.Prompt.ConfirmPrompt
-import XMonad.Prompt.Shell
-import XMonad.Prompt.FuzzyMatch
+import           XMonad.Prompt
+import           XMonad.Prompt.ConfirmPrompt
+import           XMonad.Prompt.FuzzyMatch
+import           XMonad.Prompt.RunOrRaise
+import           XMonad.Prompt.Shell
+import           XMonad.Prompt.Window
 
 
 ---------------------------------------------------------------------------------------------------
@@ -130,6 +131,8 @@ myStartupHook = do
     spawnOnce "picom --fade-in-step=1 --fade-out-step=1 --fade-delta=0 &"
     spawnOnce "xsetroot -cursor_name left_ptr"
     spawnOnce "mullvad connect"
+    spawnOn "8" "/usr/bin/discord"
+    spawnOn "9" "/usr/bin/thunderbird"
 
 myEventHook :: Event -> X All
 myEventHook = mempty
@@ -144,7 +147,6 @@ myManageHook = composeAll
     , resource  =? "kdesktop"       --> doIgnore
     ]
     <+> insertPosition Below Newer
-
 
 ---------------------------------------------------------------------------------------------------
 -- SCRATCHPAD

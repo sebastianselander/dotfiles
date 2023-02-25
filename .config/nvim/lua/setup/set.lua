@@ -1,4 +1,5 @@
-vim.cmd.colorscheme "ayu-dark"
+vim.cmd.colorscheme "ayu"
+vim.opt.background = "dark"
 
 vim.opt.guicursor = ""
 vim.opt.cursorline = true

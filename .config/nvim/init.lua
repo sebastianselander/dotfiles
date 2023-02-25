@@ -32,13 +32,13 @@ return require('packer').startup(function(use)
     use 'lervag/vimtex'
     use 'theprimeagen/harpoon'
     use 'neovimhaskell/haskell-vim'
-    use 'Pocco81/true-zen.nvim'
     use 'tpope/vim-repeat'
     use 'machakann/vim-highlightedyank'
     use 'norcalli/nvim-colorizer.lua'
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/plenary.nvim'
     use 'Yggdroot/indentLine'
+    -- use 'ms-jpq/chadtree'
     use {"akinsho/toggleterm.nvim", tag = '*', config = function()
         require("toggleterm").setup()
     end}
@@ -49,7 +49,11 @@ return require('packer').startup(function(use)
     }
 
     -- Themes
-    -- use 'ayu-theme/ayu-vim'
-    use 'Shatur/neovim-ayu'
+    use 'ayu-theme/ayu-vim'
+    use 'Alexis12119/nightly.nvim'
     use 'navarasu/onedark.nvim'
+    use 'folke/tokyonight.nvim'
+    use 'catppuccin/nvim'
+    use 'NTBBloodbath/doom-one.nvim'
+    use 'nyoom-engineering/oxocarbon.nvim'
 end)

@@ -4,7 +4,7 @@ require("toggleterm").setup {
     open_mapping = [[<C-0>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
     shade_filetypes = {},
-    shading_factor = -30,
+    shading_factor = -10,
     autochdir = false, -- when neovim changes it current directory the terminal will change it's own when next it's opened
     start_in_insert = true,
     insert_mappings = true,
