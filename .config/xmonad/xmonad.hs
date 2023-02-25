@@ -143,6 +143,8 @@ myManageHook = composeAll
     , className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
     , className =? "Zoom"           --> doFloat
+    , className =? "Discord"        --> doShift "8"
+    , className =? "thunderbird"    --> doShift "9"
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     ]

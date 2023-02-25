@@ -1,4 +1,4 @@
-vim.cmd.colorscheme "ayu"
+vim.cmd('colorscheme ayu')
 vim.opt.background = "dark"
 
 vim.opt.guicursor = ""

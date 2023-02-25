@@ -50,7 +50,6 @@ return require('packer').startup(function(use)
 
     -- Themes
     use 'ayu-theme/ayu-vim'
-    use 'Alexis12119/nightly.nvim'
     use 'navarasu/onedark.nvim'
     use 'folke/tokyonight.nvim'
     use 'catppuccin/nvim'
