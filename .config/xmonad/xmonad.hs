@@ -1,6 +1,5 @@
 -- core
 import           Data.Monoid
-import           System.Exit
 import           XMonad
 
 -- window stack manipulation and map creation
@@ -30,6 +29,7 @@ import           XMonad.Layout.Renamed
 import           XMonad.Layout.ResizableTile
 import           XMonad.Layout.Spacing
 import           XMonad.Layout.Spiral
+import           XMonad.Layout.SubLayouts
 import           XMonad.Layout.Tabbed
 import           XMonad.Layout.ThreeColumns
 import           XMonad.Layout.ToggleLayouts
@@ -51,6 +51,9 @@ import           XMonad.Util.SpawnOnce
 import           Graphics.X11.ExtraTypes.XF86
 
 -- prompts
+import           XMonad.Layout.Decoration       (Decoration, DefaultShrinker)
+import           XMonad.Layout.Simplest         (Simplest)
+import           XMonad.Layout.TwoPane
 import           XMonad.Prompt
 import           XMonad.Prompt.ConfirmPrompt
 import           XMonad.Prompt.FuzzyMatch
@@ -161,16 +164,22 @@ myManageHook = composeAll
 mySpacing :: Integer -> l a -> ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border 0 i 0 i) True (Border i 0 i 0) True
 
+full :: ModifiedLayout Rename (ModifiedLayout Spacing Full) a
 full = renamed [Replace "Full"] . mySpacing myGaps $ Full
 
+threeCols :: ModifiedLayout Rename (ModifiedLayout Spacing ThreeCol) a
 threeCols = renamed [Replace "Column"] $ mySpacing myGaps $ ThreeCol 1 (3/100) (1/2)
 
+tall :: ModifiedLayout Rename (ModifiedLayout Spacing ResizableTall) a
 tall = renamed [Replace "Tall"] . mySpacing myGaps $ ResizableTall 1 (3/100) (1/2) []
 
+wide :: ModifiedLayout Rename (ModifiedLayout Spacing (Mirror Tall)) a
 wide = renamed [Replace "Wide"] . mySpacing myGaps $ Mirror (Tall 1 (3 / 100) (1 / 2))
 
+grid :: ModifiedLayout Rename (ModifiedLayout Spacing Grid) a
 grid = renamed [Replace "Grid"] . mySpacing myGaps $ Grid
 
+tabs :: ModifiedLayout Rename (ModifiedLayout Spacing (ModifiedLayout (Decoration TabbedDecoration DefaultShrinker) Simplest)) Window
 tabs = renamed [Replace "Tabbed"] . mySpacing myGaps $ tabbed shrinkText myTabConfig
 
 myLayout = avoidStruts $ smartBorders myDefaultLayout
@@ -201,7 +210,7 @@ clickable ws = "<action=xdotool key super+" ++ show i ++ ">" ++ ws ++ "</action>
 
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
-    concat $
+    concat
     [
         [
         -- spawns
@@ -209,7 +218,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         , ((modm, xK_d), spawn "dmenu_run")
         , ((modm, xK_o), spawn myFilemanager)
         , ((modm, xK_b), spawn myBrowser)
-
+        -- windows
         , ((modm, xK_q), kill)
         , ((modm, xK_s), sendMessage NextLayout)
         , ((modm, xK_f), sendMessage (Toggle "Full"))
@@ -226,7 +235,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         , ((modm, xK_t), withFocused $ windows . W.sink)
         , ((modm, xK_comma), sendMessage (IncMasterN 1))
         , ((modm, xK_period), sendMessage (IncMasterN (-1)))
-        , ((modm .|. shiftMask, xK_c), spawn "xmonad --recompile; xmonad --restart")
+        , ((modm .|. shiftMask, xK_c), spawn "xmonad --recompile && xmonad --restart")
         -- brightness
         , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 3")
         , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 3")
@@ -257,12 +266,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 -- MOUSE
 
 myMouseBindings :: XConfig Layout -> M.Map (KeyMask, Button) (Window -> X ())
-myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
-    [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
-                                       >> windows W.shiftMaster))
-    , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
-    , ((modm, button3), (\w -> focus w >> mouseResizeWindow w
-                                       >> windows W.shiftMaster))
+myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
+    [ ((modm, button1), \w -> focus w >> mouseMoveWindow w
+                                       >> windows W.shiftMaster)
+    , ((modm, button2), \w -> focus w >> windows W.shiftMaster)
+    , ((modm, button3), \w -> focus w >> mouseResizeWindow w
+                                       >> windows W.shiftMaster)
     ]
 
 ----------------------------------------------------------------------------------------------------
