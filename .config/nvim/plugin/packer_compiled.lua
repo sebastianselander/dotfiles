@@ -79,6 +79,16 @@ _G.packer_plugins = {
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/ayu-vim",
     url = "https://github.com/ayu-theme/ayu-vim"
   },
+  ["cobalt2.nvim"] = {
+    loaded = true,
+    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/cobalt2.nvim",
+    url = "https://github.com/lalitmee/cobalt2.nvim"
+  },
+  ["colorbuddy.nvim"] = {
+    loaded = true,
+    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim",
+    url = "https://github.com/tjdevries/colorbuddy.nvim"
+  },
   ["doom-one.nvim"] = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/doom-one.nvim",
@@ -108,11 +118,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
-  },
-  ["nightly.nvim"] = {
-    loaded = true,
-    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/nightly.nvim",
-    url = "https://github.com/Alexis12119/nightly.nvim"
   },
   nvim = {
     loaded = true,

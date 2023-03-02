@@ -55,4 +55,5 @@ return require('packer').startup(function(use)
     use 'catppuccin/nvim'
     use 'NTBBloodbath/doom-one.nvim'
     use 'nyoom-engineering/oxocarbon.nvim'
+    use { 'lalitmee/cobalt2.nvim', requires = 'tjdevries/colorbuddy.nvim' }
 end)

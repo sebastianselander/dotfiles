@@ -1,5 +1,5 @@
-vim.cmd('colorscheme ayu')
-vim.opt.background = "dark"
+vim.cmd.colorscheme 'ayu'
+vim.opt.background = 'dark'
 
 vim.opt.guicursor = ""
 vim.opt.cursorline = true
@@ -41,5 +41,6 @@ vim.opt.colorcolumn = "100"
 
 vim.g.netrw_bufsettings = "noma nomod nu nowrap ro nobl"
 
--- vim.cmd("highlight Normal guibg=none")
--- vim.cmd("highlight NonText guibg=none")
+-- "Don't want to automatically insert comment leaders after using `o` in normal
+-- mode.  Doesn't work without the autocmd for some freak reason." - Typesafety
+vim.cmd [[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions+=j formatoptions+=q]]
