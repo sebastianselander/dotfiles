@@ -17,14 +17,14 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+    use { 'nvim-telescope/telescope.nvim', tag = '0.1.0',
         -- or                            , branch = '0.1.x',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
     -- it won't work :(
     -- use ( 'nvim-telescope/telescope-fzf-native.nvim', {run = 'make'} )
     use ( 'nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'} )
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use 'mbbill/undotree'
     use 'tpope/vim-fugitive'
     use 'tpope/vim-surround'

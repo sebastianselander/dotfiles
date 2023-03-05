@@ -1,6 +1,6 @@
 require("toggleterm").setup {
     size = vim.o.columns * 0.45,
-    direction = 'vertical', 
+    direction = 'float', 
     open_mapping = [[<C-0>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
     shade_filetypes = {},
@@ -23,3 +23,5 @@ require("toggleterm").setup {
 }
 
 vim.keymap.set('n', '<leader>cc', vim.cmd.ToggleTermSendCurrentLine)
+
+vim.keymap.set('n', '<leader>gs', '<cmd> 2TermExec direction=float cmd=\"lazygit\" <CR>')
