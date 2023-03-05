@@ -25,6 +25,8 @@ vim.keymap.set('n', '<leader>9', '9gt')
 vim.keymap.set('n', '<leader>tn', '<cmd> tabnew % <CR>')
 vim.keymap.set('n', '<leader>tm', '<cmd> tabm 0 <CR>')
 
+vim.keymap.set('t', '<Esc>', "<C-\\><C-n>")
+
 -- Windows.
 vim.keymap.set('n', '<A-l>', '<C-w>l')
 vim.keymap.set('n', '<A-h>', '<C-w>h')

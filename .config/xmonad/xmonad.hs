@@ -122,7 +122,7 @@ myTerminal           = "kitty"                                                 :
 myFilemanager        = "pcmanfm"                                               :: String
 myBrowser            = "firefox"                                               :: String
 myMail               = "thunderbird"                                           :: String
-myFont               = "xft:Iosevka Nerd Font:size=11:SemiBold:antialias=true" :: String
+myFont               = "xft:Iosevka Term Nerd Font:size=11:SemiBold:antialias=true" :: String
 
 ---------------------------------------------------------------------------------------------------
 -- HOOKS

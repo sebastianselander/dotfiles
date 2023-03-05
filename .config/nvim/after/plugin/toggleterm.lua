@@ -21,3 +21,5 @@ require("toggleterm").setup {
         end
     },
 }
+
+vim.keymap.set('n', '<leader>cc', vim.cmd.ToggleTermSendCurrentLine)

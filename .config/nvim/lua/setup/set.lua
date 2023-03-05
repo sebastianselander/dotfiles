@@ -37,7 +37,7 @@ vim.opt.isfname:append"@-@"
 
 vim.opt.updatetime = 100
 
-vim.opt.colorcolumn = "100"
+vim.opt.colorcolumn = "80"
 
 vim.g.netrw_bufsettings = "noma nomod nu nowrap ro nobl"
 

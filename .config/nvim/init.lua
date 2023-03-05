@@ -22,8 +22,9 @@ return require('packer').startup(function(use)
         -- or                            , branch = '0.1.x',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
-
-    use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+    -- it won't work :(
+    -- use ( 'nvim-telescope/telescope-fzf-native.nvim', {run = 'make'} )
+    use ( 'nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'} )
     use 'mbbill/undotree'
     use 'tpope/vim-fugitive'
     use 'tpope/vim-surround'
@@ -38,6 +39,17 @@ return require('packer').startup(function(use)
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/plenary.nvim'
     use 'Yggdroot/indentLine'
+    use 'Pocco81/true-zen.nvim'
+    use { 'hrsh7th/nvim-cmp',
+            requires = {
+                'hrsh7th/cmp-nvim-lsp',
+                'hrsh7th/cmp-buffer',
+                'hrsh7th/cmp-path',
+                'saadparwaiz1/cmp_luasnip',
+                'L3MON4D3/LuaSnip'
+            }
+    }
+
     -- use 'ms-jpq/chadtree'
     use {"akinsho/toggleterm.nvim", tag = '*', config = function()
         require("toggleterm").setup()
