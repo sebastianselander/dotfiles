@@ -33,6 +33,7 @@ return require('packer').startup(function(use)
     use 'lervag/vimtex'
     use 'theprimeagen/harpoon'
     use 'neovimhaskell/haskell-vim'
+    use 'NoahTheDuke/vim-just'
     use 'tpope/vim-repeat'
     use 'machakann/vim-highlightedyank'
     use 'norcalli/nvim-colorizer.lua'

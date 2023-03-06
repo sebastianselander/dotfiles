@@ -235,6 +235,11 @@ _G.packer_plugins = {
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/vim-highlightedyank",
     url = "https://github.com/machakann/vim-highlightedyank"
   },
+  ["vim-just"] = {
+    loaded = true,
+    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/vim-just",
+    url = "https://github.com/NoahTheDuke/vim-just"
+  },
   ["vim-repeat"] = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/vim-repeat",
