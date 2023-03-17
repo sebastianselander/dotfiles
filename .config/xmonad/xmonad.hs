@@ -251,7 +251,7 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
                 , ((0 .|. shiftMask, xK_Print), spawn "flameshot screen -p ~/Pictures/screenshots")
                 , ((0 .|. controlMask, xK_Print), spawn "flameshot full -p ~/Pictures/screenshots")
                 , -- change keyboard layout
-                  ((modm, xK_w), spawn "~/scripts/switchKeyboard.sh")
+                  ((modm, xK_space), spawn "~/.config/xmonad/scripts/switchKeyboard.sh")
                 ]
             , -- change workspaces
               [ ((m .|. modm, k), windows $ f i)
