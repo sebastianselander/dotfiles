@@ -32,6 +32,8 @@ nvim_lsp.hls.setup({
     }
 })
 
+nvim_lsp.pylsp.setup({})
+
 -- Only update diagnostics on BufWrite (:w)
 -- vim.diagnostic.config({
 --     virtual_text = false,
