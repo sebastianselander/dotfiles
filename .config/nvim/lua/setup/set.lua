@@ -1,4 +1,4 @@
-vim.cmd.colorscheme 'tokyonight'
+vim.cmd.colorscheme 'oxocarbon'
 vim.opt.background = 'dark'
 
 vim.opt.guicursor = ""
