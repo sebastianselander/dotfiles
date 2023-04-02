@@ -71,5 +71,6 @@ return require('packer').startup(function(use)
     use { 'lalitmee/cobalt2.nvim', requires = 'tjdevries/colorbuddy.nvim' }
     use 'bluz71/vim-moonfly-colors'
     use 'EdenEast/nightfox.nvim'
+    use 'NLKNguyen/papercolor-theme'
 
 end)

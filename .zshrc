@@ -121,6 +121,10 @@ gitpush() {
     git push
 }
 
+alias gs='git status'
+alias gc='git commit'
+alias gf='git fetch'
+
 alias cfg='cd ~/.config'
 alias ls='exa --group-directories-first'
 alias lsa='exa --group-directories-first -la'
@@ -131,7 +135,9 @@ alias ..='cd ..'
 alias ....='cd ../..'
 alias ......='cd ../../..'
 
+alias v='nvim'
 alias vim='nvim'
+
 alias con='mullvad connect'
 alias disc='mullvad disconnect'
 
