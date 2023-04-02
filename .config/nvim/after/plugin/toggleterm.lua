@@ -24,5 +24,3 @@ require("toggleterm").setup {
 }
 
 vim.keymap.set('n', '<leader>cc', vim.cmd.ToggleTermSendCurrentLine)
-
-vim.keymap.set('n', '<leader>gs', '<cmd> 2TermExec direction=float cmd=\"lazygit\" <CR>')
