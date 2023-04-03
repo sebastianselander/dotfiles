@@ -75,5 +75,7 @@ return require('packer').startup(function(use)
     use 'NLKNguyen/papercolor-theme'
     use 'dracula/vim'
     use 'svrana/neosolarized.nvim'
+    use 'https://gitlab.com/madyanov/gruber.vim'
 
+    use 'kmonad/kmonad-vim'
 end)

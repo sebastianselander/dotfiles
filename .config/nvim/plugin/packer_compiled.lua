@@ -114,6 +114,11 @@ _G.packer_plugins = {
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/doom-one.nvim",
     url = "https://github.com/NTBBloodbath/doom-one.nvim"
   },
+  ["gruber.vim"] = {
+    loaded = true,
+    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/gruber.vim",
+    url = "https://gitlab.com/madyanov/gruber.vim"
+  },
   harpoon = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/harpoon",
@@ -133,6 +138,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/indentLine",
     url = "https://github.com/Yggdroot/indentLine"
+  },
+  ["kmonad-vim"] = {
+    loaded = true,
+    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/kmonad-vim",
+    url = "https://github.com/kmonad/kmonad-vim"
   },
   ["lualine.nvim"] = {
     loaded = true,
