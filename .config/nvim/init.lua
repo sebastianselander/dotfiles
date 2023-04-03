@@ -41,7 +41,6 @@ return require('packer').startup(function(use)
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/plenary.nvim'
     use 'Yggdroot/indentLine'
-    use 'Pocco81/true-zen.nvim'
     use { 'hrsh7th/nvim-cmp',
             requires = {
                 'hrsh7th/cmp-nvim-lsp',
@@ -63,15 +62,18 @@ return require('packer').startup(function(use)
     }
 
     -- Themes
+    use 'tjdevries/colorbuddy.nvim'
+
     use 'ayu-theme/ayu-vim'
     use 'navarasu/onedark.nvim'
     use 'folke/tokyonight.nvim'
     use 'catppuccin/nvim'
     use 'NTBBloodbath/doom-one.nvim'
     use 'nyoom-engineering/oxocarbon.nvim'
-    use { 'lalitmee/cobalt2.nvim', requires = 'tjdevries/colorbuddy.nvim' }
     use 'bluz71/vim-moonfly-colors'
     use 'EdenEast/nightfox.nvim'
     use 'NLKNguyen/papercolor-theme'
+    use 'dracula/vim'
+    use 'svrana/neosolarized.nvim'
 
 end)

@@ -16,7 +16,7 @@ nvim_lsp.hls.setup({
         vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, opts)
         vim.keymap.set('i', '<C-l>', vim.lsp.buf.signature_help, opts)
         vim.keymap.set('n', '<space>cf', function() vim.lsp.buf.format { async = true } end, bufopts)
-        
+
         vim.keymap.set('n', '<space>d', vim.diagnostic.open_float, opts)
         --
         -- autoformat only for haskell
@@ -34,29 +34,51 @@ nvim_lsp.hls.setup({
     }
 })
 
-nvim_lsp.pylsp.setup({})
+nvim_lsp.rust_analyzer.setup({
+    on_attach= function(client)
+        local opts = { noremap=true, silent=true, buffer=bufnr }
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+        vim.keymap.set('n', '<C-k>', vim.diagnostic.goto_prev, opts)
+        vim.keymap.set('n', '<C-j>', vim.diagnostic.goto_next, opts)
+        vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, opts)
+        vim.keymap.set('i', '<C-l>', vim.lsp.buf.signature_help, opts)
+        vim.keymap.set('n', '<space>cf', function() vim.lsp.buf.format { async = true } end, bufopts)
 
--- Only update diagnostics on BufWrite (:w)
--- vim.diagnostic.config({
---     virtual_text = false,
---     signs = false,
---     underline = false,
--- })
+        vim.keymap.set('n', '<space>d', vim.diagnostic.open_float, opts)
+    end
+    ,
+    settings = {
+        ["rust-analyzer"] = {
+            checkOnSave = {
+                command = "clippy"
+            },
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
+            cargo = {
+                buildScripts = {
+                    enable = true,
+                },
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
+})
 
--- local ns = vim.api.nvim_create_namespace("my_test_namespace")
-
--- function show_diagnostics(bufnr)
---     local diags = vim.diagnostic.get(bufnr)
---     vim.diagnostic.show(ns, bufnr, diags, {
---         virtual_text = true,
---         signs = true,
---         underline = true,
---     })
--- end
-
--- vim.cmd [[
--- augroup test
---     autocmd!
---     autocmd BufWritePost * lua show_diagnostics(tonumber(vim.fn.expand("<abuf>")))
--- augroup END
--- ]]
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false,
+    signs = true,
+    update_in_insert = true,
+  }
+)

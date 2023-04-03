@@ -1,6 +1,3 @@
-vim.cmd.colorscheme 'PaperColor'
-vim.opt.background = 'dark'
-
 vim.opt.guicursor = ""
 vim.opt.cursorline = true
 vim.opt.mouse = ""
