@@ -4,7 +4,7 @@ vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 
 vim.keymap.set('n', '<space>', '<Nop>')
 vim.keymap.set('n', '<esc>', vim.cmd.noh)
-vim.keymap.set('n', 'J', 'mzJ`z')
+vim.keymap.set('n', 'J', 'mzJ`zdmz')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', 'N', 'Nzzzv')
@@ -26,10 +26,6 @@ vim.keymap.set('n', '<leader>tn', '<cmd> tabnew % <CR> <cmd> tabm <CR>')
 vim.keymap.set('n', '<leader>tm', '<cmd> tabm 0 <CR>')
 
 vim.keymap.set('t', '<Esc>', "<C-\\><C-n>")
-
---Themes
-vim.keymap.set('n', '<F1>', vim.cmd("colorscheme ayu"))
-vim.keymap.set('n', '<F2>', vim.cmd("colorscheme tokyonight"))
 
 -- Windows.
 vim.keymap.set('n', '<A-l>', '<C-w>l')

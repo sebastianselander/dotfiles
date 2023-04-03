@@ -4,6 +4,6 @@ neo = require('neosolarized').setup({
 })
 neo.Group.link('WarningMsg', neo.groups.Comment)
 
-vim.cmd.colorscheme 'neosolarized'
+vim.cmd.colorscheme 'tokyonight'
 vim.opt.background = 'dark'
 
