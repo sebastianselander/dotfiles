@@ -130,7 +130,7 @@ myFont = "xft:Iosevka Term Nerd Font:size=11:SemiBold:antialias=true" :: String
 myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
-    spawnOnce "kmonad ~/.config/kmonad/keyboard.kbd"
+    spawnOnce "kmonad ~/.config/kmonad/keyboard.kbd &"
     -- spawnOnce "setxkbmap -option caps:escape"
     spawnOnce "picom --fade-in-step=1 --fade-out-step=1 --fade-delta=0 &"
     spawnOnce "xsetroot -cursor_name left_ptr"
@@ -251,8 +251,6 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
                   ((0, xK_Print), spawn "flameshot gui")
                 , ((0 .|. shiftMask, xK_Print), spawn "flameshot screen -p ~/Pictures/screenshots")
                 , ((0 .|. controlMask, xK_Print), spawn "flameshot full -p ~/Pictures/screenshots")
-                , -- change keyboard layout
-                  ((modm, xK_space), spawn "~/.config/xmonad/scripts/switchKeyboard.sh")
                 ]
             , -- change workspaces
               [ ((m .|. modm, k), windows $ f i)

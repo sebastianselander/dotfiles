@@ -144,6 +144,11 @@ _G.packer_plugins = {
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/kmonad-vim",
     url = "https://github.com/kmonad/kmonad-vim"
   },
+  ["landscape.vim"] = {
+    loaded = true,
+    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/landscape.vim",
+    url = "https://github.com/itchyny/landscape.vim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/lualine.nvim",

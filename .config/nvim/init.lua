@@ -76,6 +76,7 @@ return require('packer').startup(function(use)
     use 'dracula/vim'
     use 'svrana/neosolarized.nvim'
     use 'https://gitlab.com/madyanov/gruber.vim'
+    use 'itchyny/landscape.vim'
 
     use 'kmonad/kmonad-vim'
 end)

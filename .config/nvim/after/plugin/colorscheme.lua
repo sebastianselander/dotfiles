@@ -4,6 +4,7 @@
 -- })
 -- neo.Group.link('WarningMsg', neo.groups.Comment)
 
-vim.cmd.colorscheme 'gruber'
+vim.cmd.colorscheme 'landscape'
 vim.opt.background = 'dark'
 
+vim.cmd [[let ayucolor = 'dark']]
