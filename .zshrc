@@ -11,9 +11,12 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
-# path=+("$HOME/.ghcup/bin/")
+# Add ghcup to path
 export PATH=$HOME/.ghcup/bin/:$PATH
+# Theorem prover used by Idris or Agda, idk
 export PATH=/usr/bin/z3:$PATH
+# Add pstree for window swallowing in XMonad
+export PATH=/usr/bin/pstree:$PATH
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME

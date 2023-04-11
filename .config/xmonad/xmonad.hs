@@ -18,6 +18,7 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.StatusBar
+import XMonad.Hooks.WindowSwallowing
 
 -- layout
 import XMonad.Layout.Gaps
@@ -138,7 +139,7 @@ myStartupHook = do
     spawnOn "9" "/usr/bin/thunderbird"
 
 myEventHook :: Event -> X All
-myEventHook = mempty
+myEventHook = swallowEventHook (className =? myTerminal) (return True)
 
 myManageHook :: ManageHook
 myManageHook =
