@@ -1,7 +1,7 @@
 #!/bin/bash
 
-wifistatus="$(cat /sys/class/net/w*/operstate)"
-ethstatus="$(cat /sys/class/net/enp7s0/operstate)"
+wifistatus="$(cat /sys/class/net/wlan0/operstate)"
+ethstatus="$(cat /sys/class/net/lo/operstate)"
 if [ $wifistatus = "up" ]; then 
     essid="$(nmcli c | sed -n '2{p;q}' | awk '{print $1}')"
     quality="$(cat /proc/net/wireless |  sed -n '3{p;q}' | awk '{printf "%.0f\n",$3}')"

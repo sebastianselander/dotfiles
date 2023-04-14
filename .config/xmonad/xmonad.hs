@@ -151,6 +151,7 @@ myManageHook =
         , className =? "Zoom" --> doFloat
         , className =? "Blueberry.py" --> doFloat
         , className =? "nm-connection-editor" --> doFloat
+        , className =? "Nm-connection-editor" --> doFloat
         , className =? "discord" --> doShift "8"
         , className =? "thunderbird" --> doShift "9"
         , resource =? "desktop_window" --> doIgnore
