@@ -131,6 +131,7 @@ myFont = "xft:Iosevka Term Nerd Font:size=11:SemiBold:antialias=true" :: String
 myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
+    spawnOnce "polybar &"
     spawnOnce "kmonad ~/.config/kmonad/keyboard.kbd &"
     spawnOnce "picom --fade-in-step=1 --fade-out-step=1 --fade-delta=0 &"
     spawnOnce "xsetroot -cursor_name left_ptr"
@@ -148,7 +149,9 @@ myManageHook =
         , className =? "MPlayer" --> doFloat
         , className =? "Gimp" --> doFloat
         , className =? "Zoom" --> doFloat
-        , className =? "Discord" --> doShift "8"
+        , className =? "Blueberry.py" --> doFloat
+        , className =? "nm-connection-editor" --> doFloat
+        , className =? "discord" --> doShift "8"
         , className =? "thunderbird" --> doShift "9"
         , resource =? "desktop_window" --> doIgnore
         , resource =? "kdesktop" --> doIgnore
@@ -292,7 +295,7 @@ myMouseBindings (XConfig{XMonad.modMask = modm}) =
 
 main :: IO ()
 main = do
-    bar <- spawnPipe "xmobar -x 0 ~/.config/xmonad/xmobar.config"
+    bar <- spawnPipe "polybar" -- "xmobar -x 0 ~/.config/xmonad/xmobar.config"
     xmonad . docks . ewmh $
         def
             { terminal = myTerminal
@@ -318,7 +321,7 @@ main = do
                         , ppSep = " | "
                         , ppTitle = xmobarColor (white myColor) "" . shorten 60
                         , ppLayout = xmobarColor (white myColor) ""
-                        , ppOutput = hPutStrLn bar
-                        , ppOrder = \(ws : l : t : ex) -> [ws, l, t]
+                        , -- , ppOutput = hPutStrLn bar
+                          ppOrder = \(ws : l : t : ex) -> [ws, l, t]
                         }
             }
