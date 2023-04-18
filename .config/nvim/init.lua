@@ -31,6 +31,7 @@ return require('packer').startup(function(use)
     use 'tpope/vim-commentary'
     use 'kshenoy/vim-signature'
     use 'nvim-lualine/lualine.nvim'
+--    use 'nvim-tree/nvim-tree.lua'
     use 'lervag/vimtex'
     use 'theprimeagen/harpoon'
     use 'neovimhaskell/haskell-vim'
@@ -74,9 +75,9 @@ return require('packer').startup(function(use)
     use 'EdenEast/nightfox.nvim'
     use 'NLKNguyen/papercolor-theme'
     use 'dracula/vim'
-    use 'svrana/neosolarized.nvim'
     use 'https://gitlab.com/madyanov/gruber.vim'
     use 'itchyny/landscape.vim'
+    use 'shaunsingh/solarized.nvim'
 
     use 'kmonad/kmonad-vim'
 end)

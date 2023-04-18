@@ -1,5 +1,5 @@
 require("toggleterm").setup {
-    size = 20,
+    size = 12,
     direction = 'horizontal', 
     open_mapping = [[<C-0>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
@@ -23,4 +23,4 @@ require("toggleterm").setup {
     },
 }
 
-vim.keymap.set('n', '<leader>cc', vim.cmd.ToggleTermSendCurrentLine)
+vim.keymap.set('n', '<C-9>', vim.cmd.ToggleTermSendCurrentLine)

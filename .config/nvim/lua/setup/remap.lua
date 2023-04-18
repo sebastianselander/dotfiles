@@ -27,6 +27,9 @@ vim.keymap.set('n', '<leader>tm', '<cmd> tabm 0 <CR>')
 
 vim.keymap.set('t', '<Esc>', "<C-\\><C-n>")
 
+-- Change working directory
+vim.keymap.set('n', '<leader>cd', '<cmd> cd %:h <CR>')
+
 -- Windows.
 vim.keymap.set('n', '<A-l>', '<C-w>l')
 vim.keymap.set('n', '<A-h>', '<C-w>h')
