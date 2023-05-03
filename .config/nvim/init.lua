@@ -65,7 +65,8 @@ return require('packer').startup(function(use)
     -- Themes
     use 'tjdevries/colorbuddy.nvim'
 
-    use 'ayu-theme/ayu-vim'
+    -- use 'ayu-theme/ayu-vim'
+    use 'luxed/ayu-vim'
     use 'navarasu/onedark.nvim'
     use 'folke/tokyonight.nvim'
     use 'catppuccin/nvim'

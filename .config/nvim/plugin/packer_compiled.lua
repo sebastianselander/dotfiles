@@ -82,7 +82,7 @@ _G.packer_plugins = {
   ["ayu-vim"] = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/ayu-vim",
-    url = "https://github.com/ayu-theme/ayu-vim"
+    url = "https://github.com/luxed/ayu-vim"
   },
   ["cmp-buffer"] = {
     loaded = true,
