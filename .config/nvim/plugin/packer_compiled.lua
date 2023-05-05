@@ -275,11 +275,6 @@ _G.packer_plugins = {
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/vim-repeat",
     url = "https://github.com/tpope/vim-repeat"
   },
-  ["vim-signature"] = {
-    loaded = true,
-    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/vim-signature",
-    url = "https://github.com/kshenoy/vim-signature"
-  },
   ["vim-surround"] = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/vim-surround",

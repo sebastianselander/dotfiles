@@ -29,7 +29,6 @@ return require('packer').startup(function(use)
     use 'tpope/vim-fugitive'
     use 'tpope/vim-surround'
     use 'tpope/vim-commentary'
-    use 'kshenoy/vim-signature'
     use 'nvim-lualine/lualine.nvim'
 --    use 'nvim-tree/nvim-tree.lua'
     use 'lervag/vimtex'
