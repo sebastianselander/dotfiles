@@ -4,7 +4,6 @@ vim.opt.mouse = ""
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
-vim.opt.hidden = true
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -40,4 +39,10 @@ vim.g.netrw_bufsettings = "noma nomod nu nowrap ro nobl"
 
 -- "Don't want to automatically insert comment leaders after using `o` in normal
 -- mode.  Doesn't work without the autocmd for some freak reason." - Typesafety
-vim.cmd [[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions+=j formatoptions+=q]]
+vim.cmd [[ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions+=j formatoptions+=q ]]
+
+-- trigger `autoread` when files changes on disk
+vim.opt.autoread = true
+vim.cmd [[ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif ]]
+-- notification after file change
+vim.cmd [[ autocmd FileChangedShellPost * \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None ]]

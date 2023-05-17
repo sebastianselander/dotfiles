@@ -20,10 +20,10 @@ nvim_lsp.hls.setup({
         vim.keymap.set('n', '<space>d', vim.diagnostic.open_float, opts)
         --
         -- autoformat only for haskell
-        if vim.api.nvim_buf_get_option(0, 'filetype') == 'haskell' then
-            vim.api.nvim_command[[
-            autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
-        end
+        -- if vim.api.nvim_buf_get_option(0, 'filetype') == 'haskell' then
+        --     vim.api.nvim_command[[
+        --     autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
+        -- end
     end
     ,
     settings = {

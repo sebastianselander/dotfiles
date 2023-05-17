@@ -33,7 +33,8 @@ return require('packer').startup(function(use)
 --    use 'nvim-tree/nvim-tree.lua'
     use 'lervag/vimtex'
     use 'theprimeagen/harpoon'
-    use 'neovimhaskell/haskell-vim'
+    -- use 'neovimhaskell/haskell-vim'
+    use 'neovimhaskell/nvim-hs.vim'
     use 'NoahTheDuke/vim-just'
     use 'tpope/vim-repeat'
     use 'machakann/vim-highlightedyank'
@@ -41,6 +42,10 @@ return require('packer').startup(function(use)
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/plenary.nvim'
     use 'Yggdroot/indentLine'
+
+    use ('isovector/cornelis', {run = ":! stack build"})
+    use 'kana/vim-textobj-user'
+
     use { 'hrsh7th/nvim-cmp',
             requires = {
                 'hrsh7th/cmp-nvim-lsp',

@@ -127,6 +127,8 @@ gitpush() {
 alias gs='git status'
 alias gc='git commit'
 alias gf='git fetch'
+alias gp='git push'
+alias ga='git add'
 
 alias cfg='cd ~/.config'
 alias ls='exa --group-directories-first'

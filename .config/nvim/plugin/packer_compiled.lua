@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim",
     url = "https://github.com/tjdevries/colorbuddy.nvim"
   },
+  cornelis = {
+    loaded = true,
+    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/cornelis",
+    url = "https://github.com/isovector/cornelis"
+  },
   ["doom-one.nvim"] = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/doom-one.nvim",
@@ -128,11 +133,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/haskell-tools.nvim",
     url = "https://github.com/mrcjkb/haskell-tools.nvim"
-  },
-  ["haskell-vim"] = {
-    loaded = true,
-    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/haskell-vim",
-    url = "https://github.com/neovimhaskell/haskell-vim"
   },
   indentLine = {
     loaded = true,
@@ -173,6 +173,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
+  },
+  ["nvim-hs.vim"] = {
+    loaded = true,
+    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/nvim-hs.vim",
+    url = "https://github.com/neovimhaskell/nvim-hs.vim"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -279,6 +284,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
+  },
+  ["vim-textobj-user"] = {
+    loaded = true,
+    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/vim-textobj-user",
+    url = "https://github.com/kana/vim-textobj-user"
   },
   vimtex = {
     loaded = true,
