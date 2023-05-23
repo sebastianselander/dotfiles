@@ -21,27 +21,24 @@ return require('packer').startup(function(use)
         -- or                            , branch = '0.1.x',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
-    -- it won't work :(
-    -- use ( 'nvim-telescope/telescope-fzf-native.nvim', {run = 'make'} )
-    use ( 'nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'} )
+    use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'} )
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use 'mbbill/undotree'
-    use 'tpope/vim-fugitive'
     use 'tpope/vim-surround'
     use 'tpope/vim-commentary'
     use 'nvim-lualine/lualine.nvim'
---    use 'nvim-tree/nvim-tree.lua'
     use 'lervag/vimtex'
     use 'theprimeagen/harpoon'
-    -- use 'neovimhaskell/haskell-vim'
+    use 'neovimhaskell/haskell-vim'
     use 'neovimhaskell/nvim-hs.vim'
-    use 'NoahTheDuke/vim-just'
     use 'tpope/vim-repeat'
     use 'machakann/vim-highlightedyank'
     use 'norcalli/nvim-colorizer.lua'
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/plenary.nvim'
     use 'Yggdroot/indentLine'
+    use 'Pocco81/true-zen.nvim'
+    use 'sindrets/diffview.nvim'
 
     use ('isovector/cornelis', {run = ":! stack build"})
     use 'kana/vim-textobj-user'
@@ -61,10 +58,10 @@ return require('packer').startup(function(use)
         require("toggleterm").setup()
     end}
 
-    use {
-        'mrcjkb/haskell-tools.nvim',
-        branch = '1.x.x', -- recommended
-    }
+    -- use {
+    --     'mrcjkb/haskell-tools.nvim',
+    --     branch = '1.x.x', -- recommended
+    -- }
 
     -- Themes
     use 'tjdevries/colorbuddy.nvim'
