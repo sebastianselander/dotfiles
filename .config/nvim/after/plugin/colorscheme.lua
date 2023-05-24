@@ -1,6 +1,6 @@
 
-vim.g.ayucolor = "mirage"
-vim.cmd.colorscheme 'ayu'
+vim.g.ayucolor = "dark"
+vim.cmd.colorscheme 'doom-one'
 -- vim.opt.background = 'dark'
 
 -- vim.cmd [[highlight Normal ctermbg=NONE guibg=NONE]]

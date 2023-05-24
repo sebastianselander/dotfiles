@@ -1,0 +1,31 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/sebastian/" . ".config/")
+ ("/home/sebastian/.config/" . "emacs/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/sebastian/.config/emacs/"
+ "/home/sebastian/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "init.el"
+ "stamma.md"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/sebastian/.config/emacs/" (25710 21941 983418 173000) "ido.last~" "../" "./" "elpa/" "ido.last" "auto-save-list/" "init.el" "init.el~")
+
+ ("/home/sebastian/" (25710 21941 973418 120000) "Documents/" ".android/" ".steampid" ".p10k.zsh" "Pictures/" ".cabal/" ".pulse-cookie" ".Xauthority" ".zshrc~" "Templates/" ".bash_profile" "qmk_firmware/" ".bash_history" ".python_history" ".stack/" ".mozilla/" "Music/" ".m2/" ".rustup/" "../" ".AndroidStudio3.5/" ".xsession-errors.old" ".ghc/" ".texlive/" ".gnupg/" ".ssh/" ".gitignore" ".mullvad/" ".emulator_console_auth_token" ".dotfiles/" ".zcompdump-sebastian-zenbook-5.9" ".wget-hsts" "Videos/" ".cache/" ".zshrc" ".java/" "./" ".AndroidStudio3.6/" ".zsh/" ".nix-profile" ".bashrc" "Public/" ".bash_logout" ".pki/" ".zoom/" ".cargo/" ".zsh_history" ".vscode/" "README.md" ".thunderbird/" "Downloads/" "Desktop/" ".npm/" ".ghcup/" ".xsession-errors" ".dmrc" ".xinitrc" ".vim/" ".oh-my-zsh/" ".steampath" ".gradle/" ".gitconfig" ".BurpSuite/" ".vscode-cli/" ".lldb/" ".config/" ".zcompdump-sebastian-zenbook-5.9.zwc" ".local/" "stamma.md")
+
+ ("/home/sebastian/.config/" (25709 59118 166441 438000) "spotify/" "Android Open Source Project/" "clangd/" "ranger/" "nvim/" "discord/" "qmk/" "cava/" "Mullvad VPN/" "Google/" "nitrogen/" "qBittorrent/" "kitty/" "tmux/" "Code/" "vlc/" "polybar/" "vifm/" "cef_user_data/" "systemd/" "flameshot/" "dconf/" "../" "mypaint/" "pcmanfm-qt/" "emacs/" "QtProject/" "kmonad/" "Pinta/" "./" "libfm/" "htop/" "rofi/" "lazygit/" "GIMP/" "chromium/" "pulse/" "QtProject.conf" "user-dirs.locale" "neofetch/" "zoom.conf" "zoomus.conf" "procps/" "inkscape/" "user-dirs.dirs" "fontforge/" "gtk-3.0/" "pcmanfm/" "alacritty/" "obs-studio/" "xmonad/" "changes.md")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

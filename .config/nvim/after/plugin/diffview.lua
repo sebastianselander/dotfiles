@@ -1,1 +1,1 @@
-vim.keymap.set('n', '<leader>dv', vim.cmd.DiffViewOpen)
+vim.keymap.set('n', '<leader>gv', vim.cmd.DiffViewOpen)
