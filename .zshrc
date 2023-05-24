@@ -17,6 +17,7 @@ export PATH=$HOME/.ghcup/bin/:$PATH
 export PATH=/usr/bin/z3:$PATH
 # Add pstree for window swallowing in XMonad
 export PATH=/usr/bin/pstree:$PATH
+export XDG_CONFIG_HOME="${HOME}/.config"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
