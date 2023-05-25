@@ -39,6 +39,7 @@ return require('packer').startup(function(use)
     use 'Yggdroot/indentLine'
     use 'Pocco81/true-zen.nvim'
     use 'sindrets/diffview.nvim'
+    use 'stevearc/oil.nvim'
 
     use ('isovector/cornelis', {run = ":! stack build"})
     use 'kana/vim-textobj-user'
@@ -80,6 +81,7 @@ return require('packer').startup(function(use)
     use 'https://gitlab.com/madyanov/gruber.vim'
     use 'itchyny/landscape.vim'
     use 'shaunsingh/solarized.nvim'
+    use 'nyngwang/nvimgelion'
 
     use 'kmonad/kmonad-vim'
 end)

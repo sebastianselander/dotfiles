@@ -1,0 +1,18 @@
+
+;; ----- smex-history -----
+(
+ vterm
+ package-install
+ customize-themes
+ cd
+ 5x5
+ arp
+ dbx
+)
+
+;; ----- smex-data -----
+(
+ (customize-themes . 1)
+ (package-install . 3)
+ (vterm . 4)
+)

@@ -5,9 +5,9 @@
 (setq inhibit-startup-message t)
 
 ;; Smex or meta
-;; (global-set-key (kbd "M-x") 'smex)
-;; (global-set-key (kbd "M-x") 'smex-major-mode-commands)
-;; (global-set-key (kbd "C-c C-C M-x") 'execute-extended-command)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-x") 'smex-major-mode-commands)
+(global-set-key (kbd "C-c C-C M-x") 'execute-extended-command)
 
 ;; Disable lame shit
 (menu-bar-mode 0)
@@ -22,10 +22,17 @@
 ;; Line numbers
 (setq display-line-numbers-type 'relative) (global-display-line-numbers-mode)
 
+(global-set-key (kbd "C-x b") (frog-jump-buffer))
+
 ;; Change size of entire emacs, zooms everything by 20%
 (set-face-attribute 'default nil
 		    :family "Julia Mono"
 		    :height 130)
+(use-package cmake
+    :ensure t)
+
+(use-package vterm
+    :ensure t)
 
 (use-package switch-window
   :ensure t
@@ -45,7 +52,7 @@
 ;; Initialize packages
 (package-initialize)
 
-(load-theme 'gruber-darker t)
+(load-theme 'ayu-grey t)
 (require 'evil)
 (evil-mode 1)
 (custom-set-variables
@@ -53,11 +60,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("296f12a58b5bc587fdf08995a84cb8cdec74b83b794fddaad012e520c411ddf1" default))
  '(package-selected-packages
-   '(smex frog-jump-buffer switchy-window switch-window gruber-darker-theme evil ayu-theme)))
+   '(cmake vterm smex frog-jump-buffer switchy-window switch-window gruber-darker-theme evil ayu-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
