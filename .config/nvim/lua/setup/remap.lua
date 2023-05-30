@@ -1,7 +1,6 @@
 vim.g.mapleader = ' '
 
 vim.keymap.set('n', '<leader>tt', vim.cmd.Oil)
-vim.keymap.set('n', '<Tab>', 'za')
 
 vim.keymap.set('n', '<space>', '<Nop>')
 vim.keymap.set('n', '<esc>', vim.cmd.noh)
