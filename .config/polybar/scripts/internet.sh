@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-wifistatus="$(cat /sys/class/net/wlo1/operstate)"
+wifistatus="$(cat /sys/class/net/wlan0/operstate)"
 ethstatus="$(cat /sys/class/net/lo/operstate)"
 if [ $wifistatus = "up" ]; then 
     essid="$(nmcli c | sed -n '2{p;q}' | awk '{print $1}')"

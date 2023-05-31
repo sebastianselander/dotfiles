@@ -151,7 +151,7 @@ alias disc='mullvad disconnect'
 # this one for arch
 # alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # this one for nixos
-alias config='/home/sebastian/.nix-profile/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
