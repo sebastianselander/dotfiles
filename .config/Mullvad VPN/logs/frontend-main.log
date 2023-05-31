@@ -1,7 +1,0 @@
-[2023-05-31 22:07:14.029][verbose] Chromium sandbox is enabled
-[2023-05-31 22:07:14.031][info] Running version 2023.3
-[2023-05-31 22:07:14.031][verbose] Creating gui-settings file and writing the default settings to it
-[2023-05-31 22:07:14.092][info] Detected locale: en-US
-[2023-05-31 22:07:14.140][info] Connected to the daemon
-[2023-05-31 22:07:14.242][info] Skip autoconnect because account token is not set
-[2023-05-31 22:07:14.523][error] Failed to check autostart file: ENOENT: no such file or directory, access '/home/sebastian/.config/autostart/mullvad-vpn.desktop'
