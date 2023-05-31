@@ -1,3 +1,5 @@
+{-# LANGUAGE ImportQualifiedPost #-}
+
 -- core
 import Data.Monoid
 import XMonad

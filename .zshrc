@@ -148,8 +148,11 @@ alias con='mullvad connect'
 alias disc='mullvad disconnect'
 
 # easy dotfile management using bare repo `config commit -m "this is an example"`
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+# this one for arch
+# alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+# this one for nixos
+alias config='/home/sebastian/.nix-profile/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-alias b='cd ~/Documents/bachelor_thesis/language/'
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

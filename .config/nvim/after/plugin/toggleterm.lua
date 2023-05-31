@@ -1,7 +1,7 @@
 require("toggleterm").setup {
     size = 12,
     direction = 'float', 
-    open_mapping = [[<leader>0]],
+    open_mapping = [[<C-0>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
     shade_filetypes = {},
     shading_factor = 0,
