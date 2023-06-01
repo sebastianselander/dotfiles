@@ -1,5 +1,5 @@
 # Polybar bluetooth module
-A fully functional bluetooth module for polybar that adds an icon that changes dinamically accordingly to the bluetooth status.
+A fully functional bluetooth module for polybar that adds an icon that changes dynamically accordingly to the bluetooth status.
 
 ![on](https://github.com/msaitz/polybar-bluetooth/blob/master/screenshots/on.png) When the bluetooth is on
 
@@ -14,7 +14,7 @@ A fully functional bluetooth module for polybar that adds an icon that changes d
 
 ## Installation
 
-Place the shell script files in your preferred sctipt directory.
+Place the shell script files in your preferred script directory.
 
 Add  the module to your polybar config file
 ```ini

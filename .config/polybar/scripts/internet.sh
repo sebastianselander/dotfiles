@@ -19,4 +19,4 @@ else
     quality=""
     icon=""
 fi
-echo "$icon $essid $quality"
+echo "$icon $essid"
