@@ -18,7 +18,11 @@
 
 
 (defcfg
+  ;; laptop and desktop need different paths to keyboard, annoying
+  ;; laptop:
   input (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
+  ;; desktop:
+  ;; input (device-file "/dev/input/by-id/usb-04d9_USB-HID_Keyboard-event-kbd")
   output (uinput-sink
             "KMonad kbd"
             "sleep 0.2s; xset r rate 230 55; sleep 0.2s; setxkbmap -option compose:menu")
