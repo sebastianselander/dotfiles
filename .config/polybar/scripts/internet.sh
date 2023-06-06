@@ -10,7 +10,7 @@ elif [ $ethstatus = "up" ]; then
     essid="$(nmcli c | sed -n '2{p;q}' | awk '{print $5}')"
     quality=""
     icon=""
-elif [ -d /sys/class/net/enp0s* ]; then
+elif [ -d /sys/class/net/enp5s* ]; then
     essid="$(nmcli c | sed -n '2{p;q}' | awk '{print $5}')"
     quality=""
     icon=""

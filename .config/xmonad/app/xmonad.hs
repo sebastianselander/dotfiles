@@ -3,6 +3,7 @@
 
 -- core
 import Data.Monoid
+import Control.Monad (when)
 import XMonad
 
 -- window stack manipulation and map creation
@@ -31,6 +32,7 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.ToggleLayouts
+import XMonad.Layout.IndependentScreens (countScreens)
 
 -- actions
 import XMonad.Actions.SpawnOn
@@ -101,6 +103,8 @@ myGruvbox =
 
 myModMask :: KeyMask
 myModMask = mod4Mask
+myMeny :: String
+myMenu = "dmenu_run"
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = False
 myClickJustFocuses :: Bool
@@ -131,11 +135,11 @@ myFont = "xft:Iosevka Term Nerd Font:size=11:SemiBold:antialias=true"
 
 myStartupHook :: X ()
 myStartupHook = do
-    spawnOnce "nitrogen --restore &"
-    spawnOnce "polybar &"
+    spawnOnce "nitrogen --restore"
+    spawnOnce "polybar"
     -- Stack install on the source repo places the binary here
-    spawnOnce "~/.local/bin/kmonad ~/.config/kmonad/keyboard.kbd &"
-    spawnOnce "picom --fade-in-step=1 --fade-out-step=1 --fade-delta=0 &"
+    spawnOnce "~/.local/bin/kmonad ~/.config/kmonad/keyboard.kbd"
+    spawnOnce "picom --fade-in-step=1 --fade-out-step=1 --fade-delta=0"
     spawnOnce "xsetroot -cursor_name left_ptr"
     spawnOnce "mullvad connect"
     spawnOn "8" "discord"
@@ -156,6 +160,7 @@ myManageHook =
         , className =? "Nm-connection-editor" --> doFloat
         , className =? "discord" --> doShift "8"
         , className =? myMail --> doShift "9"
+        , classname =? "Steam" --> doFloat
         , resource =? "desktop_window" --> doIgnore
         , resource =? "kdesktop" --> doIgnore
         ]
@@ -246,8 +251,7 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
             [
                 [ -- spawns
                   ((modm, xK_Return), spawn $ XMonad.terminal conf)
-                , ((modm, xK_d), spawn "dmenu_run")
-                , ((modm, xK_o), spawn myFilemanager)
+                , ((modm, xK_d), spawn myMenu)
                 , ((modm, xK_b), spawn myBrowser)
                 , -- windows
                   ((modm, xK_q), kill)
@@ -325,7 +329,8 @@ main = do
     dbus <- D.connectSession
     _ <- D.requestName dbus (D.busName_ "org.xmonad.Log")
         [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
-    bar <- spawnPipe "polybar"
+    nScreens <- countScreens
+    when (nScreens == 2) (liftIO $ spawn "~/.config/xmonad/scripts/monitorsDesktop.sh")
     -- ewmhFullscreen breaks polybar xworkspaces
     xmonad . docks . ewmh $
         def

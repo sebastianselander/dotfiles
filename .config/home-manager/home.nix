@@ -15,6 +15,13 @@
   # release notes.
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
+  nixpkgs = {
+    config = {
+        allowUnfree = true;
+    };
+  };
+  fonts.fontconfig.enable = true;
+  # networking.iproute2.enable = true; 
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -26,19 +33,31 @@
     happy
     alex
     llvm
+    xmonad-log
+    thunderbird
+    exa
+    git
+    rofi
+    discord
+    polybarFull
+    neovim
+    i3lock
+    flameshot
+    pcmanfm
+    rofi
+    blueberry
+    wine
+    texlive.combined.scheme-basic
+    neofetch
+    htop
+    neovim
+    networkmanagerapplet
+    lutris
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    julia-mono
+    iosevka
+    nerdfonts
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
