@@ -1,4 +1,5 @@
 {-# LANGUAGE ImportQualifiedPost #-}
+{-# LANGUAGE OverloadedRecordDot #-}
 
 -- core
 import Data.Monoid
@@ -44,6 +45,10 @@ import Graphics.X11.ExtraTypes.XF86
 -- prompts
 import XMonad.Layout.Decoration (Decoration, DefaultShrinker)
 import XMonad.Layout.Simplest (Simplest)
+
+import DBus qualified as D
+import DBus.Client qualified as D
+import Codec.Binary.UTF8.String (decodeString)
 
 ---------------------------------------------------------------------------------------------------
 -- COLOR SCHEMES
@@ -104,12 +109,12 @@ myBorderWidth :: Dimension
 myBorderWidth = 2
 myGaps :: Integer
 myGaps = 6
-myColor :: Colorscheme
-myColor = myGruber
 myNormalBorderColor :: String
 myNormalBorderColor = "#000000"
 myFocusedBorderColor :: String
 myFocusedBorderColor = "#FFFFFF"
+myColor :: Colorscheme
+myColor = myGruber
 myTerminal :: String
 myTerminal = "kitty"
 myFilemanager :: String
@@ -134,7 +139,7 @@ myStartupHook = do
     spawnOnce "xsetroot -cursor_name left_ptr"
     spawnOnce "mullvad connect"
     spawnOn "8" "discord"
-    spawnOn "9" "thunderbird"
+    spawnOn "9" myMail
 
 myEventHook :: Event -> X All
 myEventHook = swallowEventHook (className =? myTerminal) (return True)
@@ -155,6 +160,33 @@ myManageHook =
         , resource =? "kdesktop" --> doIgnore
         ]
         <+> insertPosition Below Newer
+
+myLogHook :: D.Client -> PP
+myLogHook dbus = def
+    { ppOutput = dbusOutput dbus
+    -- , ppCurrent = wrap "[" "]" . wrap ("%{F" <> (myColor.green) <> "}") " %{F-}"
+    -- , ppVisible = wrap ("%{F" <> (myColor.white) <> "} ") " %{F-}"
+    -- , ppHidden = wrap ("%{F" <> (myColor.yellow) <> "}") " %{F-}"
+    -- , ppHiddenNoWindows = wrap ("%{F" <> (myColor.yellow) <> "}") " %{F-}"
+    -- , ppTitle = wrap ("%{F" <> (myColor.yellow) <> "}") " %{F-}"
+    , ppCurrent = const ""
+    , ppVisible = const ""
+    , ppHidden = const ""
+    , ppHiddenNoWindows = const ""
+    , ppTitle = const ""
+    , ppSep = " | "
+    }
+    
+-- Requires the program xmonad-log, can be found in AUR
+dbusOutput :: D.Client -> String -> IO ()
+dbusOutput dbus str = do
+    let objectPath = D.objectPath_ "/org/xmonad/Log"
+    let interfaceName = D.interfaceName_ "org.xmonad.Log"
+    let memberName = D.memberName_ "Update"
+    let signal = (D.signal objectPath interfaceName memberName) {
+        D.signalBody = [D.toVariant $ decodeString str]
+                                                                }
+    D.emit dbus signal
 
 ---------------------------------------------------------------------------------------------------
 -- SCRATCHPAD
@@ -243,11 +275,11 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
                   ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 3")
                 , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 3")
                 , -- volume
-                  ((0, xF86XK_AudioMute), spawn "amixer set Master 'toggle'")
+                  ((0, xF86XK_AudioMute), spawn "pamixer --toggle-mute")
                 , ((0, xF86XK_AudioRaiseVolume), spawn "pamixer -i 3")
                 , ((0, xF86XK_AudioLowerVolume), spawn "pamixer -d 3")
                 , -- lock screen
-                  ((modm .|. controlMask, xK_l), spawn "i3lock -i ~/Pictures/watercity_locked.png")
+                  ((modm .|. controlMask, xK_l), spawn "i3lock -c 5555FF")
                 , -- screenshots
                   ((0, xK_Print), spawn "flameshot gui")
                 , ((0 .|. shiftMask, xK_Print), spawn "flameshot screen -p ~/Pictures/screenshots")
@@ -265,7 +297,7 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
               ]
             ]
 
-----------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -- MOUSE
 
 myMouseBindings :: XConfig Layout -> M.Map (KeyMask, Button) (Window -> X ())
@@ -288,12 +320,17 @@ myMouseBindings (XConfig{XMonad.modMask = modm}) =
             )
         ]
 
-----------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
 -- MAIN
 
 main :: IO ()
 main = do
-    bar <- spawnPipe "polybar" -- "xmobar -x 0 ~/.config/xmonad/xmobar.config"
+    dbus <- D.connectSession
+    _ <- D.requestName dbus (D.busName_ "org.xmonad.Log")
+        [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
+    bar <- spawnPipe "polybar"
+    -- ewmhFullscreen breaks polybar xworkspaces
     xmonad . docks . ewmh $
         def
             { terminal = myTerminal
@@ -309,17 +346,5 @@ main = do
             , manageHook = myManageHook
             , handleEventHook = myEventHook
             , startupHook = myStartupHook
-            , logHook =
-                dynamicLogWithPP $
-                    xmobarPP
-                        { ppCurrent = xmobarColor (green myColor) "" . wrap "[" "]"
-                        , ppVisible = xmobarColor (white myColor) "" . wrap "" "" . clickable
-                        , ppHidden = xmobarColor (yellow myColor) "" . wrap "" "" . clickable
-                        , ppHiddenNoWindows = xmobarColor (white myColor) "" . clickable
-                        , ppSep = " | "
-                        , ppTitle = xmobarColor (white myColor) "" . shorten 60
-                        , ppLayout = xmobarColor (white myColor) ""
-                        -- , ppOutput = hPutStrLn bar
-                        , ppOrder = \(ws : l : t : ex) -> [ws, l, t]
-                        }
+            , logHook = dynamicLogWithPP (myLogHook dbus)
             }

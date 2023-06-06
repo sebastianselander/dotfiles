@@ -36,7 +36,6 @@ return require('packer').startup(function(use)
     use 'norcalli/nvim-colorizer.lua'
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/plenary.nvim'
-    use 'Yggdroot/indentLine'
     use 'Pocco81/true-zen.nvim'
     use 'sindrets/diffview.nvim'
     use 'stevearc/oil.nvim'
