@@ -53,6 +53,7 @@
     neovim
     networkmanagerapplet
     lutris
+    nitrogen
 
     julia-mono
     iosevka
