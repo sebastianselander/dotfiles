@@ -163,12 +163,8 @@ myManageHook =
 
 myLogHook :: D.Client -> PP
 myLogHook dbus = def
+    -- Hide everything but the layout
     { ppOutput = dbusOutput dbus
-    -- , ppCurrent = wrap "[" "]" . wrap ("%{F" <> (myColor.green) <> "}") " %{F-}"
-    -- , ppVisible = wrap ("%{F" <> (myColor.white) <> "} ") " %{F-}"
-    -- , ppHidden = wrap ("%{F" <> (myColor.yellow) <> "}") " %{F-}"
-    -- , ppHiddenNoWindows = wrap ("%{F" <> (myColor.yellow) <> "}") " %{F-}"
-    -- , ppTitle = wrap ("%{F" <> (myColor.yellow) <> "}") " %{F-}"
     , ppCurrent = const ""
     , ppVisible = const ""
     , ppHidden = const ""
