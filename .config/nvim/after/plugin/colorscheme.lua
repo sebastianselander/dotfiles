@@ -1,9 +1,8 @@
-
 vim.g.ayucolor = "mirage"
 vim.cmd.colorscheme 'ayu'
 vim.opt.background = 'dark'
 
--- vim.cmd [[highlight Normal ctermbg=NONE guibg=NONE]]
+vim.cmd [[highlight Normal ctermbg=NONE guibg=NONE]]
 
 local doomone = require('doom-one')
 doomone.setup =
