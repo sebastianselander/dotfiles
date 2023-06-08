@@ -229,7 +229,7 @@ myKeys conf@(XConfig{XMonad.modMask = modm}) =
                , ((0, xF86XK_AudioRaiseVolume), spawn "pamixer -i 3")
                , ((0, xF86XK_AudioLowerVolume), spawn "pamixer -d 3")
                , -- lock screen
-                 ((modm .|. controlMask, xK_l), spawn "i3lock -c 5555FF")
+                 ((modm .|. controlMask, xK_l), spawn "betterlockscreen --wall --blur -l")
                , -- screenshots
                  ((0, xK_Print), spawn "flameshot gui")
                , ((0 .|. shiftMask, xK_Print), spawn "flameshot screen -p ~/Pictures/screenshots")
