@@ -42,13 +42,11 @@
     thunderbird
     exa
     git
-    rofi
     discord
     polybarFull
     neovim
     flameshot
     pcmanfm
-    rofi
     blueberry
     wine
     texlive.combined.scheme-basic
@@ -62,7 +60,7 @@
     obs-studio
     wget
     dmenu
-    betterlockscreen
+    ghcid
 
     julia-mono
     iosevka
