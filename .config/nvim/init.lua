@@ -39,6 +39,7 @@ return require('packer').startup(function(use)
     use 'Pocco81/true-zen.nvim'
     use 'sindrets/diffview.nvim'
     use 'stevearc/oil.nvim'
+    use 'jinh0/eyeliner.nvim'
 
     use ('isovector/cornelis', {run = ":! stack build"})
     use 'kana/vim-textobj-user'
