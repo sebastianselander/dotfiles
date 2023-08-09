@@ -40,6 +40,7 @@ return require('packer').startup(function(use)
     use 'sindrets/diffview.nvim'
     use 'stevearc/oil.nvim'
     use 'jinh0/eyeliner.nvim'
+    use 'L3MON4D3/LuaSnip'
 
     use ('isovector/cornelis', {run = ":! stack build"})
     use 'kana/vim-textobj-user'
@@ -54,7 +55,6 @@ return require('packer').startup(function(use)
             }
     }
 
-    -- use 'ms-jpq/chadtree'
     use {"akinsho/toggleterm.nvim", tag = '*', config = function()
         require("toggleterm").setup()
     end}
@@ -67,7 +67,6 @@ return require('packer').startup(function(use)
     -- Themes
     use 'tjdevries/colorbuddy.nvim'
 
-    -- use 'ayu-theme/ayu-vim'
     use 'luxed/ayu-vim'
     use 'navarasu/onedark.nvim'
     use 'folke/tokyonight.nvim'
@@ -82,6 +81,7 @@ return require('packer').startup(function(use)
     use 'itchyny/landscape.vim'
     use 'shaunsingh/solarized.nvim'
     use 'nyngwang/nvimgelion'
+    use 'dasupradyumna/midnight.nvim'
 
     use 'kmonad/kmonad-vim'
 end)

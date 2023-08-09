@@ -159,6 +159,11 @@ _G.packer_plugins = {
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["midnight.nvim"] = {
+    loaded = true,
+    path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/midnight.nvim",
+    url = "https://github.com/dasupradyumna/midnight.nvim"
+  },
   ["nightfox.nvim"] = {
     loaded = true,
     path = "/home/sebastian/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
