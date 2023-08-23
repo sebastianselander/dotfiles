@@ -125,6 +125,20 @@ gitpush() {
     git push
 }
 
+mkrepo() {
+    if [ -d "/path/to/dir" ] && [ -n "$(ls -A "/path/to/dir")" ] then
+        NAME=basename "$PWD"
+
+        git init
+        git add .
+        git commit -m "Initial commit"
+        gh repo create $NAME --private --push --source .
+    else
+        echo "Folder is empty"
+    fi
+}
+alias mkrepo=mkrepo()
+
 alias gs='git status'
 alias gc='git commit'
 alias gf='git fetch'
@@ -153,6 +167,7 @@ alias disc='mullvad disconnect'
 # this one for nixos
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
+alias logoff='killall -u $USER'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
